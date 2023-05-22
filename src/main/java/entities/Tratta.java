@@ -1,23 +1,23 @@
 package entities;
 
-
 import java.util.UUID;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
 @Entity
-@Table (name = "tratte")
+@Table(name = "tratte")
 @Getter
 @Setter
 @NoArgsConstructor
-
 
 public class Tratta {
 	@Id
@@ -28,8 +28,10 @@ public class Tratta {
 	private String stazionePartenza;
 	private String capolinea;
 	private double tempoEffettivoPercorrenza;
-    private Tappa tappa;
-    private double tempoMedioPercorrenza;
+	@ManyToOne
+	private Tappa tappa;
+	private double tempoMedioPercorrenza;
+
 	public Tratta(Mezzo mezzo, String stazionePartenza, String capolinea, double tempoEffettivoPercorrenza, Tappa tappa,
 			double tempoMedioPercorrenza) {
 		super();
@@ -40,6 +42,7 @@ public class Tratta {
 		this.tappa = tappa;
 		this.tempoMedioPercorrenza = tempoMedioPercorrenza;
 	}
+
 	@Override
 	public String toString() {
 		return "Tratta [id=" + id + ", mezzo=" + mezzo + ", stazionePartenza=" + stazionePartenza + ", capolinea="
@@ -47,10 +50,4 @@ public class Tratta {
 				+ ", tempoMedioPercorrenza=" + tempoMedioPercorrenza + "]";
 	}
 
-  
-   
-
-    
-    
 }
-
