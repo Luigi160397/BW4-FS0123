@@ -43,4 +43,12 @@ public class TappaDAO {
 			log.info("Tappa con id " + id + " non trovata!");
 		}
 	}
+
+	public void update(Tappa p) {
+		EntityTransaction transaction = em.getTransaction();
+		transaction.begin();
+		em.merge(p);
+		transaction.commit();
+		log.info("Tappa con id " + p.getId() + " aggiornata!");
+	}
 }

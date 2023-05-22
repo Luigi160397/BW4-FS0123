@@ -43,4 +43,12 @@ public class MezzoDAO {
 			log.info("Mezzo con id " + id + " non trovato!");
 		}
 	}
+
+	public void update(Mezzo p) {
+		EntityTransaction transaction = em.getTransaction();
+		transaction.begin();
+		em.merge(p);
+		transaction.commit();
+		log.info("Mezzo con id " + p.getId() + " aggiornato!");
+	}
 }

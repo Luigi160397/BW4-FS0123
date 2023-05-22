@@ -43,4 +43,12 @@ public class TicketDAO {
 			log.info("Ticket con id " + id + " non trovato!");
 		}
 	}
+
+	public void update(Ticket p) {
+		EntityTransaction transaction = em.getTransaction();
+		transaction.begin();
+		em.merge(p);
+		transaction.commit();
+		log.info("Ticket con id " + p.getId() + " aggiornato!");
+	}
 }

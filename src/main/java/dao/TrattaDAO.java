@@ -43,4 +43,12 @@ public class TrattaDAO {
 			log.info("Tratta con id " + id + " non trovata!");
 		}
 	}
+
+	public void update(Tratta p) {
+		EntityTransaction transaction = em.getTransaction();
+		transaction.begin();
+		em.merge(p);
+		transaction.commit();
+		log.info("Tratta con id " + p.getId() + " aggiornata!");
+	}
 }

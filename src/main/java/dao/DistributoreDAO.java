@@ -43,4 +43,12 @@ public class DistributoreDAO {
 			log.info("Distributore con id " + id + " non trovato!");
 		}
 	}
+
+	public void update(Distributore p) {
+		EntityTransaction transaction = em.getTransaction();
+		transaction.begin();
+		em.merge(p);
+		transaction.commit();
+		log.info("Distributore con id " + p.getId() + " aggiornato!");
+	}
 }

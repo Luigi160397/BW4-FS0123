@@ -43,4 +43,12 @@ public class TesseraDAO {
 			log.info("Tessera con id " + id + " non trovata!");
 		}
 	}
+
+	public void update(Tessera p) {
+		EntityTransaction transaction = em.getTransaction();
+		transaction.begin();
+		em.merge(p);
+		transaction.commit();
+		log.info("Tessera con numero tessera " + p.getNumeroTessera() + " aggiornata!");
+	}
 }
