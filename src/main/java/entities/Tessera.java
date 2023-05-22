@@ -1,6 +1,7 @@
 package entities;
 
 import java.time.LocalDate;
+import java.util.Set;
 import java.util.UUID;
 
 import javax.persistence.Entity;
@@ -29,8 +30,8 @@ public class Tessera {
 	private LocalDate dataNascita;
 	private LocalDate dataRilascio;
 	private LocalDate dataScadenza;
-	@OneToMany(mappedBy = "tessere")
-	private Ticket ticket;
+	@OneToMany(mappedBy = "tessera")
+	private Set<Ticket> tickets;
 
 	public Tessera(String nome, String cognome, LocalDate dataNascita, LocalDate dataRilascio, LocalDate dataScadenza) {
 		super();
@@ -40,6 +41,12 @@ public class Tessera {
 		this.dataNascita = dataNascita;
 		this.dataRilascio = dataRilascio;
 		this.dataScadenza = dataScadenza;
+	}
+
+	@Override
+	public String toString() {
+		return "Tessera [numeroTessera=" + numeroTessera + ", nome=" + nome + ", cognome=" + cognome + ", dataNascita="
+				+ dataNascita + ", dataRilascio=" + dataRilascio + ", dataScadenza=" + dataScadenza + "]";
 	}
 
 }

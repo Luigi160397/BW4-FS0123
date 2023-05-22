@@ -1,7 +1,6 @@
 package entities;
 
 import java.time.LocalDate;
-import java.util.Set;
 import java.util.UUID;
 
 import javax.persistence.Entity;
@@ -28,25 +27,24 @@ public abstract class Ticket {
 	@GeneratedValue
 	private UUID id;
 	@ManyToOne
-
-	private Set<Tessera> tessere;
+	private Tessera tessera;
 	private LocalDate DataEmissione;
 	private LocalDate DataScadenza;
 	@ManyToOne
-	private Set<Distributore> distributori;
+	private Distributore distributore;
 	private LocalDate dataTimbratura;
 	@ManyToOne
-	private Set<Mezzo> mezziTimbratura;
+	private Mezzo mezzoTimbratura;
 
-	public Ticket(Set<Tessera> tessere, LocalDate dataEmissione, LocalDate dataScadenza, Set<Distributore> distributori,
-			LocalDate dataTimbratura, Set<Mezzo> mezziTimbratura) {
+	public Ticket(Tessera tessera, LocalDate dataEmissione, LocalDate dataScadenza, Distributore distributore,
+			LocalDate dataTimbratura, Mezzo mezzoTimbratura) {
 		super();
-		this.tessere = tessere;
+		this.tessera = tessera;
 		DataEmissione = dataEmissione;
 		DataScadenza = dataScadenza;
-		this.distributori = distributori;
+		this.distributore = distributore;
 		this.dataTimbratura = dataTimbratura;
-		this.mezziTimbratura = mezziTimbratura;
+		this.mezzoTimbratura = mezzoTimbratura;
 	}
 
 	@Override

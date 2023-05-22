@@ -1,7 +1,6 @@
 package entities;
 
 import java.time.LocalDate;
-import java.util.Set;
 
 import javax.persistence.Entity;
 
@@ -14,10 +13,11 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class Biglietto extends Ticket {
-	public Biglietto(Set<Tessera> tessere, LocalDate dataEmissione, LocalDate dataScadenza,
-			Set<Distributore> distributori, LocalDate dataTimbratura, Set<Mezzo> mezziTimbratura) {
-		super(tessere, dataEmissione, dataScadenza = dataEmissione.plusDays(1), distributori, dataTimbratura,
-				mezziTimbratura);
+
+	public Biglietto(Tessera tessera, LocalDate dataEmissione, LocalDate dataScadenza, Distributore distributore,
+			LocalDate dataTimbratura, Mezzo mezzoTimbratura) {
+		super(tessera, dataEmissione, dataScadenza = dataEmissione.plusDays(1), distributore, dataTimbratura,
+				mezzoTimbratura);
 
 	}
 

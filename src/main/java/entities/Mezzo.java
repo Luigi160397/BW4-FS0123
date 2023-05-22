@@ -1,15 +1,21 @@
 package entities;
 
 import java.time.LocalDate;
+import java.util.Set;
 import java.util.UUID;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@Entity
+@Table(name = "mezzi")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -18,18 +24,32 @@ public abstract class Mezzo {
 	@GeneratedValue
 	private UUID id;
 	private int capienza;
-	private StatoMezzo stato = StatoMezzo.IN_SERVIZIO;
+	private StatoMezzo stato;
 	private LocalDate dataInizioServizio;
 	private LocalDate dataFineServizio;
 	private LocalDate dataInizioManutenzione;
 	private LocalDate dataFineManutenzione;
 	private int numeroBigliettiVidimati;
 	private int tratta;
+	@OneToMany(mappedBy = "mezzoTimbratura")
+	private Set<Ticket> tickets;
 
 	public Mezzo(int capienza, StatoMezzo stato, LocalDate dataInizioServizio, LocalDate dataFineServizio,
 			LocalDate dataInizioManutenzione, LocalDate dataFineManutenzione, int numeroBigliettiVidimati, int tratta) {
 		this.capienza = capienza;
 		this.stato = stato;
+		this.dataInizioServizio = dataInizioServizio;
+		this.dataFineServizio = dataFineServizio;
+		this.dataInizioManutenzione = dataInizioManutenzione;
+		this.dataFineManutenzione = dataFineManutenzione;
+		this.numeroBigliettiVidimati = numeroBigliettiVidimati;
+		this.tratta = tratta;
+	}
+
+	public Mezzo(int capienza, LocalDate dataInizioServizio, LocalDate dataFineServizio,
+			LocalDate dataInizioManutenzione, LocalDate dataFineManutenzione, int numeroBigliettiVidimati, int tratta) {
+		this.capienza = capienza;
+		this.stato = StatoMezzo.IN_SERVIZIO;
 		this.dataInizioServizio = dataInizioServizio;
 		this.dataFineServizio = dataFineServizio;
 		this.dataInizioManutenzione = dataInizioManutenzione;
