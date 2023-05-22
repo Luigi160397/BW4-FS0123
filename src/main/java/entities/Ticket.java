@@ -35,12 +35,12 @@ public abstract class Ticket {
 	@ManyToOne
 	private Mezzo mezzoTimbratura;
 
-	public Ticket(Tessera tessera, LocalDate dataEmissione, LocalDate dataScadenza, Distributore distributore,
-			LocalDate dataTimbratura, Mezzo mezzoTimbratura) {
+	public Ticket(Tessera tessera, LocalDate dataEmissione, Distributore distributore, LocalDate dataTimbratura,
+			Mezzo mezzoTimbratura) {
 		super();
 		this.tessera = tessera;
-		DataEmissione = dataEmissione;
-		DataScadenza = dataScadenza;
+		this.DataEmissione = dataEmissione;
+
 		this.distributore = distributore;
 		this.dataTimbratura = dataTimbratura;
 		this.mezzoTimbratura = mezzoTimbratura;

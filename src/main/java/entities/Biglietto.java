@@ -14,11 +14,10 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Biglietto extends Ticket {
 
-	public Biglietto(Tessera tessera, LocalDate dataEmissione, LocalDate dataScadenza, Distributore distributore,
-			LocalDate dataTimbratura, Mezzo mezzoTimbratura) {
-		super(tessera, dataEmissione, dataScadenza = dataTimbratura.plusDays(1), distributore, dataTimbratura,
-				mezzoTimbratura);
-
+	public Biglietto(Tessera tessera, LocalDate dataEmissione, Distributore distributore, LocalDate dataTimbratura,
+			Mezzo mezzoTimbratura) {
+		super(tessera, dataEmissione, distributore, dataTimbratura, mezzoTimbratura);
+		setDataScadenza(dataTimbratura.plusDays(1));
 	}
 
 	@Override

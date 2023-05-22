@@ -18,15 +18,15 @@ public class Abbonamento extends Ticket {
 	@Enumerated(EnumType.STRING)
 	private TipoAbbonamento tipoAbbonamento;
 
-	public Abbonamento(Tessera tessera, LocalDate dataEmissione, LocalDate dataScadenza, Distributore distributore,
-			LocalDate dataTimbratura, Mezzo mezzoTimbratura, TipoAbbonamento tipoAbbonamento) {
-		super(tessera, dataEmissione, dataScadenza, distributore, dataTimbratura, mezzoTimbratura);
+	public Abbonamento(Tessera tessera, LocalDate dataEmissione, Distributore distributore, LocalDate dataTimbratura,
+			Mezzo mezzoTimbratura, TipoAbbonamento tipoAbbonamento) {
+		super(tessera, dataEmissione, distributore, dataTimbratura, mezzoTimbratura);
 		this.tipoAbbonamento = tipoAbbonamento;
 
 		if (tipoAbbonamento.equals(TipoAbbonamento.SETTIMANALE)) {
-			dataScadenza = dataEmissione.plusWeeks(1);
+			setDataScadenza(dataTimbratura.plusWeeks(1));
 		} else {
-			dataScadenza = dataEmissione.plusMonths(1);
+			setDataScadenza(dataEmissione.plusMonths(1));
 		}
 	}
 
