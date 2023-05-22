@@ -1,11 +1,15 @@
 package entities;
 
 import java.time.LocalDate;
+import java.util.Set;
+
+import javax.persistence.Entity;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@Entity
 @Getter
 @Setter
 @NoArgsConstructor
@@ -13,9 +17,10 @@ public class Abbonamento extends Ticket {
 
 	private TipoAbbonamento tipoAbbonamento;
 
-	public Abbonamento(Tessera tessera, LocalDate dataEmissione, LocalDate dataScadenza, Distributore distributore,
-			LocalDate dataTimbratura, Mezzo mezzoTimbratura, TipoAbbonamento tipoAbbonamento) {
-		super(tessera, dataEmissione, dataScadenza, distributore, dataTimbratura, mezzoTimbratura);
+	public Abbonamento(Set<Tessera> tessere, LocalDate dataEmissione, LocalDate dataScadenza,
+			Set<Distributore> distributori, LocalDate dataTimbratura, Set<Mezzo> mezziTimbratura,
+			TipoAbbonamento tipoAbbonamento) {
+		super(tessere, dataEmissione, dataScadenza, distributori, dataTimbratura, mezziTimbratura);
 		this.tipoAbbonamento = tipoAbbonamento;
 		if (tipoAbbonamento.equals(TipoAbbonamento.SETTIMANALE)) {
 			dataScadenza = dataEmissione.plusWeeks(1);
@@ -26,10 +31,9 @@ public class Abbonamento extends Ticket {
 
 	@Override
 	public String toString() {
-		return "Abbonamento [tipoAbbonamento=" + tipoAbbonamento + ", getId()=" + getId() + ", getTessera()="
-				+ getTessera() + ", getDataEmissione()=" + getDataEmissione() + ", getDataScadenza()="
-				+ getDataScadenza() + ", getDistributore()=" + getDistributore() + ", getDataTimbratura()="
-				+ getDataTimbratura() + ", getMezzoTimbratura()=" + getMezzoTimbratura() + "]";
+		return "Abbonamento [tipoAbbonamento=" + tipoAbbonamento + ", getId()=" + getId() + ", getDataEmissione()="
+				+ getDataEmissione() + ", getDataScadenza()=" + getDataScadenza() + ", getDataTimbratura()="
+				+ getDataTimbratura() + "]";
 	}
 
 }

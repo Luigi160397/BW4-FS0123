@@ -1,40 +1,59 @@
 package entities;
 
 import java.time.LocalDate;
+import java.util.Set;
 import java.util.UUID;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@Entity
+@Table(name = "tickets")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Getter
 @Setter
 @NoArgsConstructor
+
 public abstract class Ticket {
+	@Id
+	@GeneratedValue
 	private UUID id;
-	private Tessera tessera;
+	@ManyToOne
+
+	private Set<Tessera> tessere;
 	private LocalDate DataEmissione;
 	private LocalDate DataScadenza;
-	private Distributore distributore;
+	@ManyToOne
+	private Set<Distributore> distributori;
 	private LocalDate dataTimbratura;
-	private Mezzo mezzoTimbratura;
+	@ManyToOne
+	private Set<Mezzo> mezziTimbratura;
 
-	public Ticket(Tessera tessera, LocalDate dataEmissione, LocalDate dataScadenza, Distributore distributore,
-			LocalDate dataTimbratura, Mezzo mezzoTimbratura) {
+	public Ticket(Set<Tessera> tessere, LocalDate dataEmissione, LocalDate dataScadenza, Set<Distributore> distributori,
+			LocalDate dataTimbratura, Set<Mezzo> mezziTimbratura) {
 		super();
-		this.tessera = tessera;
+		this.tessere = tessere;
 		DataEmissione = dataEmissione;
 		DataScadenza = dataScadenza;
-		this.distributore = distributore;
+		this.distributori = distributori;
 		this.dataTimbratura = dataTimbratura;
-		this.mezzoTimbratura = mezzoTimbratura;
+		this.mezziTimbratura = mezziTimbratura;
 	}
 
 	@Override
 	public String toString() {
-		return "Ticket [id=" + id + ", tessera=" + tessera + ", DataEmissione=" + DataEmissione + ", DataScadenza="
-				+ DataScadenza + ", distributore=" + distributore + ", dataTimbratura=" + dataTimbratura
-				+ ", mezzoTimbratura=" + mezzoTimbratura;
+		return "Ticket [id=" + id + ", DataEmissione=" + DataEmissione + ", DataScadenza=" + DataScadenza
+				+ ", dataTimbratura=" + dataTimbratura;
+
 	}
 
 }
