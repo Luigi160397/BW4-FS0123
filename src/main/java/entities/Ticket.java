@@ -34,7 +34,7 @@ public abstract class Ticket {
 	public String toString() {
 		return "Ticket [id=" + id + ", tessera=" + tessera + ", DataEmissione=" + DataEmissione + ", DataScadenza="
 				+ DataScadenza + ", distributore=" + distributore + ", dataTimbratura=" + dataTimbratura
-				+ ", mezzoTimbratura=" + mezzoTimbratura + "]";
+				+ ", mezzoTimbratura=" + mezzoTimbratura;
 	}
 
 }

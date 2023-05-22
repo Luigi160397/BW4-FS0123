@@ -24,4 +24,12 @@ public class Abbonamento extends Ticket {
 		}
 	}
 
+	@Override
+	public String toString() {
+		return "Abbonamento [tipoAbbonamento=" + tipoAbbonamento + ", getId()=" + getId() + ", getTessera()="
+				+ getTessera() + ", getDataEmissione()=" + getDataEmissione() + ", getDataScadenza()="
+				+ getDataScadenza() + ", getDistributore()=" + getDistributore() + ", getDataTimbratura()="
+				+ getDataTimbratura() + ", getMezzoTimbratura()=" + getMezzoTimbratura() + "]";
+	}
+
 }

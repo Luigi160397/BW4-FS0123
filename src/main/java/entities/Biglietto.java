@@ -18,4 +18,12 @@ public class Biglietto extends Ticket {
 
 	}
 
+	@Override
+	public String toString() {
+		return "Biglietto [ getId()=" + getId() + ", getTessera()=" + getTessera() + ", getDataEmissione()="
+				+ getDataEmissione() + ", getDataScadenza()=" + getDataScadenza() + ", getDistributore()="
+				+ getDistributore() + ", getDataTimbratura()=" + getDataTimbratura() + ", getMezzoTimbratura()="
+				+ getMezzoTimbratura() + "]";
+	}
+
 }
