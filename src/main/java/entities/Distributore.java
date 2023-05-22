@@ -4,6 +4,8 @@ import java.util.Set;
 import java.util.UUID;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -24,7 +26,9 @@ public class Distributore {
 	@Id
 	@GeneratedValue
 	private UUID id;
+	@Enumerated(EnumType.STRING)
 	private TipoDistributore tipoDistributore;
+	@Enumerated(EnumType.STRING)
 	private StatoDistributore statoAttivita;
 	@OneToMany(mappedBy = "distributore")
 	private Set<Ticket> tickets;

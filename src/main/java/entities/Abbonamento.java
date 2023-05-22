@@ -3,6 +3,8 @@ package entities;
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,7 +15,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class Abbonamento extends Ticket {
-
+	@Enumerated(EnumType.STRING)
 	private TipoAbbonamento tipoAbbonamento;
 
 	public Abbonamento(Tessera tessera, LocalDate dataEmissione, LocalDate dataScadenza, Distributore distributore,

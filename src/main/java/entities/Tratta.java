@@ -5,6 +5,7 @@ import java.util.UUID;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -24,6 +25,7 @@ public class Tratta {
 	@GeneratedValue
 	private UUID id;
 	@OneToOne
+	@JoinColumn(name = "mezzo_id", referencedColumnName = "id")
 	private Mezzo mezzo;
 	private String stazionePartenza;
 	private String capolinea;
