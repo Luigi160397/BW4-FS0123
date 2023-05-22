@@ -7,7 +7,10 @@ import java.util.UUID;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.Getter;
@@ -16,6 +19,7 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "mezzi")
+@Inheritance (strategy = InheritanceType.SINGLE_TABLE)
 @Getter
 @Setter
 @NoArgsConstructor
@@ -30,12 +34,13 @@ public abstract class Mezzo {
 	private LocalDate dataInizioManutenzione;
 	private LocalDate dataFineManutenzione;
 	private int numeroBigliettiVidimati;
-	private int tratta;
+	@OneToOne
+	private Tratta tratta;
 	@OneToMany(mappedBy = "mezzoTimbratura")
 	private Set<Ticket> tickets;
 
 	public Mezzo(int capienza, StatoMezzo stato, LocalDate dataInizioServizio, LocalDate dataFineServizio,
-			LocalDate dataInizioManutenzione, LocalDate dataFineManutenzione, int numeroBigliettiVidimati, int tratta) {
+			LocalDate dataInizioManutenzione, LocalDate dataFineManutenzione, int numeroBigliettiVidimati, Tratta tratta) {
 		this.capienza = capienza;
 		this.stato = stato;
 		this.dataInizioServizio = dataInizioServizio;
@@ -47,7 +52,7 @@ public abstract class Mezzo {
 	}
 
 	public Mezzo(int capienza, LocalDate dataInizioServizio, LocalDate dataFineServizio,
-			LocalDate dataInizioManutenzione, LocalDate dataFineManutenzione, int numeroBigliettiVidimati, int tratta) {
+			LocalDate dataInizioManutenzione, LocalDate dataFineManutenzione, int numeroBigliettiVidimati, Tratta tratta) {
 		this.capienza = capienza;
 		this.stato = StatoMezzo.IN_SERVIZIO;
 		this.dataInizioServizio = dataInizioServizio;
