@@ -33,14 +33,14 @@ public class Tessera {
 	@OneToMany(mappedBy = "tessera")
 	private Set<Ticket> tickets;
 
-	public Tessera(String nome, String cognome, LocalDate dataNascita, LocalDate dataRilascio, LocalDate dataScadenza) {
+	public Tessera(String nome, String cognome, LocalDate dataNascita, LocalDate dataRilascio) {
 		super();
 
 		this.nome = nome;
 		this.cognome = cognome;
 		this.dataNascita = dataNascita;
 		this.dataRilascio = dataRilascio;
-		this.dataScadenza = dataScadenza;
+		this.dataScadenza = dataRilascio.plusYears(1);
 	}
 
 	@Override
