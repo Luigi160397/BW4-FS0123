@@ -1,6 +1,7 @@
 package app;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -19,6 +20,7 @@ import entities.StatoDistributore;
 import entities.StatoMezzo;
 import entities.Tappa;
 import entities.Tessera;
+import entities.Ticket;
 import entities.TipoAbbonamento;
 import entities.TipoDistributore;
 import entities.Tratta;
@@ -87,7 +89,29 @@ public class Application {
 //		trattaDao.update(tratta1);
 //		trattaDao.update(tratta2);
 
-		log.info("" + trattaDao.getTempoEffettivoPercorrenza("9626b841-581c-4b30-bc96-6c3c9b43f528"));
+		System.out.println();
+
+		List<Ticket> trovatiPerPeriodoInTot = ticDao.getTotalTicket(LocalDate.of(2023, 6, 1),
+				LocalDate.of(2023, 11, 2));
+		if (trovatiPerPeriodoInTot.size() > 0) {
+			log.info("--------------------- Ticket Trovati range di tempo ---------------------");
+			trovatiPerPeriodoInTot.stream().forEach(t -> log.info(t.toString()));
+			;
+		} else {
+			log.info("Nessun Ticket trovato per l'intervallo di tempo inserito");
+		}
+
+		System.out.println();
+
+		List<Ticket> trovatiPerPeriodoEPuntoEmissione = ticDao.getTotalTicketByEmissionPoint(LocalDate.of(2023, 6, 1),
+				LocalDate.of(2023, 8, 18), TipoDistributore.AUTOMATICO);
+		if (trovatiPerPeriodoEPuntoEmissione.size() > 0) {
+			log.info("--------------------- Ticket Trovati range di tempo e Distributore ---------------------");
+			trovatiPerPeriodoEPuntoEmissione.stream().forEach(t -> log.info(t.toString()));
+			;
+		} else {
+			log.info("Nessun Ticket trovato per l'intervallo di tempo e distributore inseriti");
+		}
 
 		em.close();
 		emf.close();
