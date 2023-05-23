@@ -21,6 +21,7 @@ import lombok.Setter;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @NamedQuery(name = "findBigliettiEmessiDatoUnPeriodoInTotale", query = "SELECT t FROM Ticket t WHERE t.DataEmissione >= :start AND t.DataScadenza <= :end")
 @NamedQuery(name = "findBigliettiEmessiDatoUnPeriodoPerPuntoEmissione", query = "SELECT t FROM Ticket t WHERE t.DataEmissione >= :start AND t.DataScadenza <= :end AND t.distributore.tipoDistributore= :distributore")
+@NamedQuery(name = "findAbbonamentiValidiPerNumeroTessera", query = "SELECT t FROM Ticket t WHERE t.tessera.numeroTessera = :tessera AND t.DataScadenza > :data")
 @Getter
 @Setter
 @NoArgsConstructor

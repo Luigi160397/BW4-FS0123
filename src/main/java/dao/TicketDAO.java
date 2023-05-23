@@ -71,4 +71,12 @@ public class TicketDAO {
 		query.setParameter("distributore", tipo);
 		return query.getResultList();
 	}
+
+	public List<Ticket> getAbbonamentiValidiPerNumeroTessera(String numeroTessera, LocalDate data) {
+		TypedQuery<Ticket> query = em.createNamedQuery("findAbbonamentiValidiPerNumeroTessera", Ticket.class);
+		query.setParameter("tessera", UUID.fromString(numeroTessera));
+		query.setParameter("data", data);
+
+		return query.getResultList();
+	}
 }
