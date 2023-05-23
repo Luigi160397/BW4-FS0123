@@ -85,4 +85,9 @@ public class MezzoDAO {
 		log.info("Il numero di biglietti vidimati in questo intervallo è: " + String.valueOf(result));
 	}
 
+	public int getNumeroVolteTappaPercorsa(String id) {
+		TypedQuery<Integer> query = em.createNamedQuery("getNumeroPassaggiTappa", Integer.class);
+		query.setParameter("id", UUID.fromString(id));
+		return query.getSingleResult();
+	}
 }

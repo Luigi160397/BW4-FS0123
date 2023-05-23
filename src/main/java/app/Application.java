@@ -1,7 +1,6 @@
 package app;
 
 import java.time.LocalDate;
-import java.util.UUID;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -87,10 +86,6 @@ public class Application {
 //
 //		trattaDao.update(tratta1);
 //		trattaDao.update(tratta2);
-
-		mezzoDao.getStatoMezzoById(UUID.fromString("1e5c845f-7a51-4644-8fa9-d39085ba65fc"));
-		mezzoDao.getBigliettiVidimatiMezzoById(UUID.fromString("1324fd9b-5b3b-4fd2-b11d-166a91dc5c91"));
-		mezzoDao.getNumeroBigliettiVidimatiInPeriodoTempo(LocalDate.of(2023, 8, 15), LocalDate.of(2023, 10, 15));
 
 		em.close();
 		emf.close();
