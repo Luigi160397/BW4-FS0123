@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -20,6 +21,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 
+@NamedQuery(name = "findTempoEffettivoPercorrenza", query = "SELECT t.tempoEffettivoPercorrenza FROM Tratta t WHERE t.id = :id")
 public class Tratta {
 	@Id
 	@GeneratedValue

@@ -4,6 +4,7 @@ import java.util.UUID;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
 
 import entities.Tratta;
 import lombok.extern.slf4j.Slf4j;
@@ -50,5 +51,11 @@ public class TrattaDAO {
 		em.merge(p);
 		transaction.commit();
 		log.info("Tratta con id " + p.getId() + " aggiornata!");
+	}
+
+	public double getTempoEffettivoPercorrenza(String id) {
+		TypedQuery<Double> query = em.createNamedQuery("findTempoEffettivoPercorrenza", Double.class);
+		query.setParameter("id", UUID.fromString(id));
+		return query.getSingleResult();
 	}
 }

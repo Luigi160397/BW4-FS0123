@@ -87,6 +87,8 @@ public class Application {
 //		trattaDao.update(tratta1);
 //		trattaDao.update(tratta2);
 
+		log.info("" + trattaDao.getTempoEffettivoPercorrenza("9626b841-581c-4b30-bc96-6c3c9b43f528"));
+
 		em.close();
 		emf.close();
 	}
