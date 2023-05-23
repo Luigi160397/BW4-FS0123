@@ -63,6 +63,15 @@ public class MezzoDAO {
 		}
 	}
 
+	public void getBigliettiVidimatiMezzoById(UUID id) {
+		Mezzo found = em.find(Mezzo.class, id);
+		if (found != null) {
+			log.info("Il numero di biglietti vidimati sul mezzo è " + found.getNumeroBigliettiVidimati());
+		} else {
+			log.info("Il mezzo ricercato non esiste");
+		}
+	}
+
 	public void getNumeroBigliettiVidimatiInPeriodoTempo(LocalDate data1, LocalDate data2) {
 		TypedQuery<Integer> query = em.createNamedQuery("getBigliettiVidimati", Integer.class);
 		query.setParameter("data1", data1);
