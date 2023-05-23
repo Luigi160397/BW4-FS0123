@@ -113,6 +113,41 @@ public class Application {
 			log.info("Nessun Ticket trovato per l'intervallo di tempo e distributore inseriti");
 		}
 
+		System.out.println();
+
+		List<Ticket> trovatiAbbonamentiValidi = ticDao.getAbbonamentiValidiPerNumeroTessera(
+				"550ec839-77b8-4a2b-840b-d9f21a5f08ce", LocalDate.of(2023, 8, 13));
+		if (trovatiAbbonamentiValidi.size() > 0) {
+			log.info("--------------------- Ticket Validi Trovati Per Numero Di Tessera ---------------------");
+			trovatiAbbonamentiValidi.stream().forEach(t -> log.info(t.toString()));
+			;
+		} else {
+			log.info("Nessun Ticket valido trovato per il numero di tessera inserito");
+		}
+
+		System.out.println();
+
+		StatoMezzo trovatoStatoMezzoPerId = mezzoDao.getStatoMezzoById("47f89c4b-3b3d-4348-b877-8a8607e3f2d1");
+		if (trovatoStatoMezzoPerId != null) {
+			log.info("--------------------- Stato Mezzo Trovato Per Id ---------------------");
+			log.info("" + trovatoStatoMezzoPerId);
+		} else {
+			log.info("Nessun stato mezzo trovato per l'Id inserito");
+		}
+
+		System.out.println();
+
+		int trovatiNumeroBigliettiVidimatiPerId = mezzoDao
+				.getBigliettiVidimatiMezzoById("47f89c4b-3b3d-4348-b877-8a8607e3f2d1");
+		if (trovatiNumeroBigliettiVidimatiPerId >= 0) {
+			log.info("--------------------- Bigletti Vidimati Trovati Per Id ---------------------");
+			log.info("" + trovatiNumeroBigliettiVidimatiPerId);
+		} else {
+			log.info("Nessun biglietto vidimato trovato per l'Id inserito");
+		}
+
+		System.out.println();
+
 		em.close();
 		emf.close();
 	}
