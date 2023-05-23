@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -26,6 +27,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
+@NamedQuery(name = "getBigliettiVidimati", query = "SELECT m.numeroBigliettiVidimati FROM Mezzo m JOIN m.tickets t WHERE t.dataTimbratura BETWEEN :data1 AND :data2")
+@NamedQuery(name = "getBigliettiVidimatiSuMezzo", query = "SELECT m.numeroBigliettiVidimati FROM Mezzo m JOIN m.tickets t WHERE t.dataTimbratura BETWEEN :data1 AND :data2")
 public abstract class Mezzo {
 	@Id
 	@GeneratedValue

@@ -1,6 +1,7 @@
 package app;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -55,7 +56,7 @@ public class Application {
 		Bus bus1 = new Bus(50, StatoMezzo.IN_SERVIZIO, LocalDate.of(2023, 10, 14), LocalDate.of(2023, 10, 17), null,
 				null, 15, tratta1);
 		Bus bus2 = new Bus(50, StatoMezzo.IN_SERVIZIO, LocalDate.of(2023, 10, 14), LocalDate.of(2023, 10, 17), null,
-				null, 15, tratta2);
+				null, 35, tratta2);
 
 		Biglietto biglietto1 = new Biglietto(tessera1, LocalDate.of(2023, 10, 15), distributore1,
 				LocalDate.of(2023, 10, 16), bus1);
@@ -64,29 +65,32 @@ public class Application {
 				LocalDate.of(2023, 7, 17), bus2, TipoAbbonamento.MENSILE);
 
 //		tessDao.save(tessera1);
-		tessDao.save(tessera2);
-
+//		tessDao.save(tessera2);
+//
 //		distDao.save(distributore1);
-		distDao.save(distributore1);
-
+//		distDao.save(distributore1);
+//
 //		tappaDao.save(tappa1);
-		tappaDao.save(tappa2);
-
+//		tappaDao.save(tappa2);
+//
 //		trattaDao.save(tratta1);
-		trattaDao.save(tratta2);
-
+//		trattaDao.save(tratta2);
+//
 //		mezzoDao.save(bus1);
-		mezzoDao.save(bus2);
-
+//		mezzoDao.save(bus2);
+//
 //		ticDao.save(biglietto1);
-		ticDao.save(abbonamento1);
-
+//		ticDao.save(abbonamento1);
+//
 //		tratta1.setMezzo(bus1);
-		tratta2.setMezzo(bus2);
-
+//		tratta2.setMezzo(bus2);
+//
 //		trattaDao.update(tratta1);
-		trattaDao.update(tratta2);
+//		trattaDao.update(tratta2);
 
+		mezzoDao.getStatoMezzoById(UUID.fromString("1e5c845f-7a51-4644-8fa9-d39085ba65fc"));
+
+		mezzoDao.getNumeroBigliettiVidimatiInPeriodoTempo(LocalDate.of(2023, 8, 15), LocalDate.of(2023, 10, 15));
 		em.close();
 		emf.close();
 	}
