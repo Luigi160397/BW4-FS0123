@@ -26,7 +26,7 @@ public class Abbonamento extends Ticket {
 		if (tipoAbbonamento.equals(TipoAbbonamento.SETTIMANALE)) {
 			setDataScadenza(dataTimbratura.plusWeeks(1));
 		} else {
-			setDataScadenza(dataEmissione.plusMonths(1));
+			setDataScadenza(dataTimbratura.plusMonths(1));
 		}
 	}
 
