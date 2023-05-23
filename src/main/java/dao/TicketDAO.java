@@ -79,4 +79,13 @@ public class TicketDAO {
 
 		return query.getResultList();
 	}
+
+	public int getNumeroBigliettiVidimatiInPeriodoTempo(LocalDate data1, LocalDate data2) {
+		TypedQuery<Integer> query = em.createNamedQuery("getBigliettiVidimati", Integer.class);
+		query.setParameter("data1", data1);
+		query.setParameter("data2", data2);
+
+		return query.getSingleResult();
+
+	}
 }

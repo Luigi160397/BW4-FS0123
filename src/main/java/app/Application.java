@@ -93,8 +93,8 @@ public class Application {
 
 		List<Ticket> trovatiPerPeriodoInTot = ticDao.getTotalTicket(LocalDate.of(2023, 6, 1),
 				LocalDate.of(2023, 11, 2));
+		log.info("--------------------- Ticket Trovati range di tempo ---------------------");
 		if (trovatiPerPeriodoInTot.size() > 0) {
-			log.info("--------------------- Ticket Trovati range di tempo ---------------------");
 			trovatiPerPeriodoInTot.stream().forEach(t -> log.info(t.toString()));
 			;
 		} else {
@@ -105,8 +105,8 @@ public class Application {
 
 		List<Ticket> trovatiPerPeriodoEPuntoEmissione = ticDao.getTotalTicketByEmissionPoint(LocalDate.of(2023, 6, 1),
 				LocalDate.of(2023, 8, 18), TipoDistributore.AUTOMATICO);
+		log.info("--------------------- Ticket Trovati range di tempo e Distributore ---------------------");
 		if (trovatiPerPeriodoEPuntoEmissione.size() > 0) {
-			log.info("--------------------- Ticket Trovati range di tempo e Distributore ---------------------");
 			trovatiPerPeriodoEPuntoEmissione.stream().forEach(t -> log.info(t.toString()));
 			;
 		} else {
@@ -117,8 +117,8 @@ public class Application {
 
 		List<Ticket> trovatiAbbonamentiValidi = ticDao.getAbbonamentiValidiPerNumeroTessera(
 				"550ec839-77b8-4a2b-840b-d9f21a5f08ce", LocalDate.of(2023, 8, 13));
+		log.info("--------------------- Ticket Validi Trovati Per Numero Di Tessera ---------------------");
 		if (trovatiAbbonamentiValidi.size() > 0) {
-			log.info("--------------------- Ticket Validi Trovati Per Numero Di Tessera ---------------------");
 			trovatiAbbonamentiValidi.stream().forEach(t -> log.info(t.toString()));
 			;
 		} else {
@@ -127,26 +127,40 @@ public class Application {
 
 		System.out.println();
 
-		StatoMezzo trovatoStatoMezzoPerId = mezzoDao.getStatoMezzoById("47f89c4b-3b3d-4348-b877-8a8607e3f2d1");
-		if (trovatoStatoMezzoPerId != null) {
-			log.info("--------------------- Stato Mezzo Trovato Per Id ---------------------");
+		log.info("--------------------- Stato Mezzo Trovato Per Id ---------------------");
+
+		try {
+			StatoMezzo trovatoStatoMezzoPerId = mezzoDao.getStatoMezzoById("a04b0d26-2421-47fb-8b82-22dee0e78b41");
 			log.info("" + trovatoStatoMezzoPerId);
-		} else {
+		} catch (Exception e) {
 			log.info("Nessun stato mezzo trovato per l'Id inserito");
 		}
 
 		System.out.println();
 
-		int trovatiNumeroBigliettiVidimatiPerId = mezzoDao
-				.getBigliettiVidimatiMezzoById("47f89c4b-3b3d-4348-b877-8a8607e3f2d1");
-		if (trovatiNumeroBigliettiVidimatiPerId >= 0) {
-			log.info("--------------------- Bigletti Vidimati Trovati Per Id ---------------------");
+		log.info("--------------------- Bigletti Vidimati Trovati Per Id ---------------------");
+
+		try {
+			int trovatiNumeroBigliettiVidimatiPerId = mezzoDao
+					.getBigliettiVidimatiMezzoById("a04b0d26-2421-47fb-8b82-22dee0e78b41");
 			log.info("" + trovatiNumeroBigliettiVidimatiPerId);
-		} else {
+
+		} catch (Exception e) {
 			log.info("Nessun biglietto vidimato trovato per l'Id inserito");
 		}
 
 		System.out.println();
+
+		log.info("--------------------- Bigletti Vidimati Trovati dato un periodo di tempo ---------------------");
+
+		try {
+			int bigliettiTrovatiPerRangeTempo = ticDao
+					.getNumeroBigliettiVidimatiInPeriodoTempo(LocalDate.of(2023, 6, 1), LocalDate.of(2023, 11, 1));
+
+			log.info("" + bigliettiTrovatiPerRangeTempo);
+		} catch (Exception e) {
+			log.info("Nessun biglietto vidimato trovato per il periodo inserito");
+		}
 
 		em.close();
 		emf.close();

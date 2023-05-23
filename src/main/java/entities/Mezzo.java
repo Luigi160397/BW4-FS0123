@@ -29,7 +29,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @NamedQuery(name = "getStatoMezzo", query = "SELECT s.stato FROM Mezzo s WHERE s.id = :id")
 @NamedQuery(name = "getBigliettiVidimatiMezzo", query = "SELECT s.numeroBigliettiVidimati FROM Mezzo s WHERE s.id = :id")
-@NamedQuery(name = "getBigliettiVidimati", query = "SELECT m.numeroBigliettiVidimati FROM Mezzo m JOIN m.tickets t WHERE t.dataTimbratura BETWEEN :data1 AND :data2")
+
 @NamedQuery(name = "getNumeroPassaggiTappa", query = "SELECT t.tratta.tappa.numeroVoltePercorsa FROM Mezzo t WHERE t.id = :id")
 public abstract class Mezzo {
 	@Id

@@ -1,11 +1,9 @@
 package dao;
 
-import java.time.LocalDate;
 import java.util.UUID;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
-import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
 import entities.Mezzo;
@@ -65,19 +63,6 @@ public class MezzoDAO {
 		TypedQuery<Integer> query = em.createNamedQuery("getBigliettiVidimatiMezzo", Integer.class);
 		query.setParameter("id", UUID.fromString(id));
 		return query.getSingleResult();
-	}
-
-	public void getNumeroBigliettiVidimatiInPeriodoTempo(LocalDate data1, LocalDate data2) {
-		TypedQuery<Integer> query = em.createNamedQuery("getBigliettiVidimati", Integer.class);
-		query.setParameter("data1", data1);
-		query.setParameter("data2", data2);
-		Integer result;
-		try {
-			result = query.getSingleResult();
-		} catch (NoResultException e) {
-			result = 0;
-		}
-		log.info("Il numero di biglietti vidimati in questo intervallo è: " + String.valueOf(result));
 	}
 
 	public int getNumeroVolteTappaPercorsa(String id) {
