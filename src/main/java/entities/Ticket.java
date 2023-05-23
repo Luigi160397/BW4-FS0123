@@ -22,7 +22,6 @@ import lombok.Setter;
 @NamedQuery(name = "findBigliettiEmessiDatoUnPeriodoInTotale", query = "SELECT t FROM Ticket t WHERE t.DataEmissione BETWEEN :start AND :end")
 @NamedQuery(name = "findBigliettiEmessiDatoUnPeriodoPerPuntoEmissione", query = "SELECT t FROM Ticket t WHERE (t.DataEmissione BETWEEN :start AND :end) AND t.distributore.tipoDistributore = :distributore")
 @NamedQuery(name = "getBigliettiVidimati", query = "SELECT COUNT(t) FROM Ticket t WHERE t.dataTimbratura BETWEEN :data1 AND :data2")
-
 @NamedQuery(name = "findAbbonamentiValidiPerNumeroTessera", query = "SELECT t FROM Ticket t WHERE t.tessera.numeroTessera = :tessera AND t.DataScadenza > :data")
 @Getter
 @Setter

@@ -29,7 +29,7 @@ public class TicketDAO {
 
 	}
 
-	public Ticket getByISBN(UUID id) {
+	public Ticket getById(UUID id) {
 
 		Ticket found = em.find(Ticket.class, id);
 		return found;
@@ -80,8 +80,8 @@ public class TicketDAO {
 		return query.getResultList();
 	}
 
-	public int getNumeroBigliettiVidimatiInPeriodoTempo(LocalDate data1, LocalDate data2) {
-		TypedQuery<Integer> query = em.createNamedQuery("getBigliettiVidimati", Integer.class);
+	public Long getNumeroBigliettiVidimatiInPeriodoTempo(LocalDate data1, LocalDate data2) {
+		TypedQuery<Long> query = em.createNamedQuery("getBigliettiVidimati", Long.class);
 		query.setParameter("data1", data1);
 		query.setParameter("data2", data2);
 

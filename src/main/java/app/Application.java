@@ -154,8 +154,8 @@ public class Application {
 		log.info("--------------------- Bigletti Vidimati Trovati dato un periodo di tempo ---------------------");
 
 		try {
-			int bigliettiTrovatiPerRangeTempo = ticDao
-					.getNumeroBigliettiVidimatiInPeriodoTempo(LocalDate.of(2023, 6, 1), LocalDate.of(2023, 11, 1));
+			Long bigliettiTrovatiPerRangeTempo = ticDao
+					.getNumeroBigliettiVidimatiInPeriodoTempo(LocalDate.of(2023, 6, 1), LocalDate.of(2023, 9, 1));
 
 			log.info("" + bigliettiTrovatiPerRangeTempo);
 		} catch (Exception e) {
