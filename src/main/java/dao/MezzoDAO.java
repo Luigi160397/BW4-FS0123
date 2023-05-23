@@ -9,6 +9,7 @@ import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
 import entities.Mezzo;
+import entities.StatoMezzo;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -54,22 +55,16 @@ public class MezzoDAO {
 		log.info("Mezzo con id " + p.getId() + " aggiornato!");
 	}
 
-	public void getStatoMezzoById(UUID id) {
-		Mezzo found = em.find(Mezzo.class, id);
-		if (found != null) {
-			log.info("Lo stato del mezzo è " + found.getStato());
-		} else {
-			log.info("Il mezzo ricercato non esiste");
-		}
+	public StatoMezzo getStatoMezzoById(String id) {
+		TypedQuery<StatoMezzo> query = em.createNamedQuery("getStatoMezzo", StatoMezzo.class);
+		query.setParameter("id", UUID.fromString(id));
+		return query.getSingleResult();
 	}
 
-	public void getBigliettiVidimatiMezzoById(UUID id) {
-		Mezzo found = em.find(Mezzo.class, id);
-		if (found != null) {
-			log.info("Il numero di biglietti vidimati sul mezzo è " + found.getNumeroBigliettiVidimati());
-		} else {
-			log.info("Il mezzo ricercato non esiste");
-		}
+	public int getBigliettiVidimatiMezzoById(String id) {
+		TypedQuery<Integer> query = em.createNamedQuery("getBigliettiVidimatiMezzo", Integer.class);
+		query.setParameter("id", UUID.fromString(id));
+		return query.getSingleResult();
 	}
 
 	public void getNumeroBigliettiVidimatiInPeriodoTempo(LocalDate data1, LocalDate data2) {
