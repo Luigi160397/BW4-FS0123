@@ -1,11 +1,15 @@
 package dao;
 
+import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
 
 import entities.Ticket;
+import entities.TipoDistributore;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -50,5 +54,21 @@ public class TicketDAO {
 		em.merge(p);
 		transaction.commit();
 		log.info("Ticket con id " + p.getId() + " aggiornato!");
+	}
+
+	public List<Ticket> getTotalTicket(LocalDate start, LocalDate end) {
+		TypedQuery<Ticket> query = em.createNamedQuery("findBigliettiEmessiDatoUnPeriodoInTotale", Ticket.class);
+		query.setParameter("start", start);
+		query.setParameter("end", end);
+		return query.getResultList();
+	}
+
+	public List<Ticket> getTotalTicketByEmissionPoint(LocalDate start, LocalDate end, TipoDistributore tipo) {
+		TypedQuery<Ticket> query = em.createNamedQuery("findBigliettiEmessiDatoUnPeriodoPerPuntoEmissione",
+				Ticket.class);
+		query.setParameter("start", start);
+		query.setParameter("end", end);
+		query.setParameter("distributore", tipo);
+		return query.getResultList();
 	}
 }

@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 import lombok.Getter;
@@ -18,6 +19,8 @@ import lombok.Setter;
 @Entity
 @Table(name = "tickets")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@NamedQuery(name = "findBigliettiEmessiDatoUnPeriodoInTotale", query = "SELECT t FROM Ticket t WHERE t.DataEmissione >= :start AND t.DataScadenza <= :end")
+@NamedQuery(name = "findBigliettiEmessiDatoUnPeriodoPerPuntoEmissione", query = "SELECT t FROM Ticket t WHERE t.DataEmissione >= :start AND t.DataScadenza <= :end AND t.distributore.tipoDistributore= :distributore")
 @Getter
 @Setter
 @NoArgsConstructor

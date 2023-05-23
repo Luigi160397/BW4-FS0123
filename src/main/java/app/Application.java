@@ -64,28 +64,28 @@ public class Application {
 				LocalDate.of(2023, 7, 17), bus2, TipoAbbonamento.MENSILE);
 
 //		tessDao.save(tessera1);
-		tessDao.save(tessera2);
+//		tessDao.save(tessera2);
 
 //		distDao.save(distributore1);
-		distDao.save(distributore1);
+//		distDao.save(distributore1);
 
 //		tappaDao.save(tappa1);
-		tappaDao.save(tappa2);
+//		tappaDao.save(tappa2);
 
 //		trattaDao.save(tratta1);
-		trattaDao.save(tratta2);
+//		trattaDao.save(tratta2);
 
 //		mezzoDao.save(bus1);
-		mezzoDao.save(bus2);
+//		mezzoDao.save(bus2);
 
 //		ticDao.save(biglietto1);
-		ticDao.save(abbonamento1);
+//		ticDao.save(abbonamento1);
 
 //		tratta1.setMezzo(bus1);
-		tratta2.setMezzo(bus2);
+//		tratta2.setMezzo(bus2);
 
 //		trattaDao.update(tratta1);
-		trattaDao.update(tratta2);
+//		trattaDao.update(tratta2);
 
 		em.close();
 		emf.close();
