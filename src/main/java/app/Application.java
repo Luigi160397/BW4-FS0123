@@ -162,6 +162,30 @@ public class Application {
 			log.info("Nessun biglietto vidimato trovato per il periodo inserito");
 		}
 
+		System.out.println();
+
+		log.info("--------------------- Numero di Volte Che è stata Percorsa la Tappa ---------------------");
+
+		try {
+			int numeroPassaggiPerTappa = mezzoDao.getNumeroVolteTappaPercorsa("47f89c4b-3b3d-4348-b877-8a8607e3f2d1");
+			log.info("" + numeroPassaggiPerTappa);
+		} catch (Exception e) {
+			log.info("Nessun passaggio trovato per questo ID");
+		}
+
+		System.out.println();
+
+		log.info("--------------------- Tempo Effettivo Di Percorrenza Tappa ---------------------");
+
+		try {
+			double tempoPercorrenzaTappa = trattaDao
+					.getTempoEffettivoPercorrenza("58d6cbc5-a96e-4cb6-85a1-f0253385e1c9");
+			log.info("" + tempoPercorrenzaTappa + " ore");
+
+		} catch (Exception e) {
+			log.info("Nessuna Tratta trovata con questo Id");
+		}
+
 		em.close();
 		emf.close();
 	}
