@@ -55,7 +55,7 @@ public class Application {
 		Bus bus1 = new Bus(50, StatoMezzo.IN_SERVIZIO, LocalDate.of(2023, 10, 14), LocalDate.of(2023, 10, 17), null,
 				null, 15, tratta1);
 		Bus bus2 = new Bus(50, StatoMezzo.IN_SERVIZIO, LocalDate.of(2023, 10, 14), LocalDate.of(2023, 10, 17), null,
-				null, 15, tratta2);
+				null, 35, tratta2);
 
 		Biglietto biglietto1 = new Biglietto(tessera1, LocalDate.of(2023, 10, 15), distributore1,
 				LocalDate.of(2023, 10, 16), bus1);
@@ -65,25 +65,25 @@ public class Application {
 
 //		tessDao.save(tessera1);
 //		tessDao.save(tessera2);
-
+//
 //		distDao.save(distributore1);
 //		distDao.save(distributore1);
-
+//
 //		tappaDao.save(tappa1);
 //		tappaDao.save(tappa2);
-
+//
 //		trattaDao.save(tratta1);
 //		trattaDao.save(tratta2);
-
+//
 //		mezzoDao.save(bus1);
 //		mezzoDao.save(bus2);
-
+//
 //		ticDao.save(biglietto1);
 //		ticDao.save(abbonamento1);
-
+//
 //		tratta1.setMezzo(bus1);
 //		tratta2.setMezzo(bus2);
-
+//
 //		trattaDao.update(tratta1);
 //		trattaDao.update(tratta2);
 
