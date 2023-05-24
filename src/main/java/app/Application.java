@@ -295,7 +295,14 @@ public class Application {
 					break;
 				case 4:
 					scanner.nextLine();
-					// Gestisci l'opzione 4
+					System.out.println("Inserisci l'Id del mezzo per trovare il suo stato attività:");
+					String mezzoId = scanner.nextLine();
+					try {
+						StatoMezzo trovatoStatoMezzoPerId = mezzoDao.getStatoMezzoById(mezzoId);
+						log.info("" + trovatoStatoMezzoPerId);
+					} catch (Exception e) {
+						log.info("Nessun stato mezzo trovato per l'Id inserito");
+					}
 					break;
 				case 5:
 					scanner.nextLine();
