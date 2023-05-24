@@ -241,7 +241,34 @@ public class Application {
 					scanner.nextLine();
 					System.out.println(
 							"Inserisci il range di tempo e il punto di emissione per trovare i biglietti emessi");
-					// Gestisci l'opzione 2
+					System.out.println("Inserisci la prima data (formato: yyyy-MM-dd):");
+					String input3 = scanner.nextLine();
+					LocalDate data3 = LocalDate.parse(input3, formatter);
+					System.out.println();
+					System.out.println("Inserisci la seconda data (formato: yyyy-MM-dd):");
+					String input4 = scanner.nextLine();
+					LocalDate data4 = LocalDate.parse(input4, formatter);
+					System.out.println("Inserisci il Tipo di Distributore (Automatico/Fisico):");
+					String input5 = scanner.nextLine();
+
+					while (!input5.equalsIgnoreCase("automatico") && !input5.equalsIgnoreCase("fisico")) {
+						System.out.println(
+								"Tipo Distributore Inesistente! Reinserisci il Tipo di Distributore (Automatico/Fisico):");
+						input5 = scanner.nextLine();
+					}
+					TipoDistributore tipo = TipoDistributore.valueOf(input5.toUpperCase());
+					System.out.println();
+
+					List<Ticket> trovatiPerPeriodoEPuntoEmissione = ticDao.getTotalTicketByEmissionPoint(data3, data4,
+							tipo);
+					log.info(
+							"--------------------- Ticket Trovati range di tempo e Distributore ---------------------");
+					if (trovatiPerPeriodoEPuntoEmissione.size() > 0) {
+						trovatiPerPeriodoEPuntoEmissione.stream().forEach(t -> log.info(t.toString()));
+						;
+					} else {
+						log.info("Nessun Ticket trovato per l'intervallo di tempo e distributore inseriti");
+					}
 					break;
 				case 3:
 					scanner.nextLine();
