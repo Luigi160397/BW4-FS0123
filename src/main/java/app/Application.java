@@ -340,6 +340,7 @@ public class Application {
 			}
 		}
 
+		scanner.close();
 		em.close();
 		emf.close();
 	}
