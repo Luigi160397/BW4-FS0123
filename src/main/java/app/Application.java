@@ -116,7 +116,7 @@ public class Application {
 		System.out.println();
 
 		List<Ticket> trovatiAbbonamentiValidi = ticDao.getAbbonamentiValidiPerNumeroTessera(
-				"550ec839-77b8-4a2b-840b-d9f21a5f08ce", LocalDate.of(2023, 8, 13));
+				"76caa0b6-e846-433c-ab47-fbb51f9dbaa2", LocalDate.of(2023, 8, 13));
 		log.info("--------------------- Ticket Validi Trovati Per Numero Di Tessera ---------------------");
 		if (trovatiAbbonamentiValidi.size() > 0) {
 			trovatiAbbonamentiValidi.stream().forEach(t -> log.info(t.toString()));
@@ -167,7 +167,7 @@ public class Application {
 		log.info("--------------------- Numero di Volte Che è stata Percorsa la Tappa ---------------------");
 
 		try {
-			int numeroPassaggiPerTappa = mezzoDao.getNumeroVolteTappaPercorsa("47f89c4b-3b3d-4348-b877-8a8607e3f2d1");
+			int numeroPassaggiPerTappa = mezzoDao.getNumeroVolteTappaPercorsa("a04b0d26-2421-47fb-8b82-22dee0e78b41");
 			log.info("" + numeroPassaggiPerTappa);
 		} catch (Exception e) {
 			log.info("Nessun passaggio trovato per questo ID");
@@ -179,7 +179,7 @@ public class Application {
 
 		try {
 			double tempoPercorrenzaTappa = trattaDao
-					.getTempoEffettivoPercorrenza("58d6cbc5-a96e-4cb6-85a1-f0253385e1c9");
+					.getTempoEffettivoPercorrenza("84b1848d-961b-423c-9e11-a8716ec16099");
 			log.info("" + tempoPercorrenzaTappa + " ore");
 
 		} catch (Exception e) {
