@@ -1,7 +1,10 @@
 package app;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.InputMismatchException;
 import java.util.List;
+import java.util.Scanner;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -89,28 +92,218 @@ public class Application {
 //		trattaDao.update(tratta1);
 //		trattaDao.update(tratta2);
 
+//		System.out.println();
+//
+//		List<Ticket> trovatiPerPeriodoInTot = ticDao.getTotalTicket(LocalDate.of(2023, 6, 1),
+//				LocalDate.of(2023, 11, 2));
+//		log.info("--------------------- Ticket Trovati range di tempo ---------------------");
+//		if (trovatiPerPeriodoInTot.size() > 0) {
+//			trovatiPerPeriodoInTot.stream().forEach(t -> log.info(t.toString()));
+//			;
+//		} else {
+//			log.info("Nessun Ticket trovato per l'intervallo di tempo inserito");
+//		}
+//
+//		System.out.println();
+//
+//		List<Ticket> trovatiPerPeriodoEPuntoEmissione = ticDao.getTotalTicketByEmissionPoint(LocalDate.of(2023, 6, 1),
+//				LocalDate.of(2023, 8, 18), TipoDistributore.AUTOMATICO);
+//		log.info("--------------------- Ticket Trovati range di tempo e Distributore ---------------------");
+//		if (trovatiPerPeriodoEPuntoEmissione.size() > 0) {
+//			trovatiPerPeriodoEPuntoEmissione.stream().forEach(t -> log.info(t.toString()));
+//			;
+//		} else {
+//			log.info("Nessun Ticket trovato per l'intervallo di tempo e distributore inseriti");
+//		}
+//
+//		System.out.println();
+//
+//		List<Ticket> trovatiAbbonamentiValidi = ticDao.getAbbonamentiValidiPerNumeroTessera(
+//				"76caa0b6-e846-433c-ab47-fbb51f9dbaa2", LocalDate.of(2023, 8, 13));
+//		log.info("--------------------- Ticket Validi Trovati Per Numero Di Tessera ---------------------");
+//		if (trovatiAbbonamentiValidi.size() > 0) {
+//			trovatiAbbonamentiValidi.stream().forEach(t -> log.info(t.toString()));
+//			;
+//		} else {
+//			log.info("Nessun Ticket valido trovato per il numero di tessera inserito");
+//		}
+//
+//		System.out.println();
+//
+//		log.info("--------------------- Stato Mezzo Trovato Per Id ---------------------");
+//
+//		try {
+//			StatoMezzo trovatoStatoMezzoPerId = mezzoDao.getStatoMezzoById("a04b0d26-2421-47fb-8b82-22dee0e78b41");
+//			log.info("" + trovatoStatoMezzoPerId);
+//		} catch (Exception e) {
+//			log.info("Nessun stato mezzo trovato per l'Id inserito");
+//		}
+//
+//		System.out.println();
+//
+//		log.info("--------------------- Bigletti Vidimati Trovati Per Id ---------------------");
+//
+//		try {
+//			int trovatiNumeroBigliettiVidimatiPerId = mezzoDao
+//					.getBigliettiVidimatiMezzoById("a04b0d26-2421-47fb-8b82-22dee0e78b41");
+//			log.info("" + trovatiNumeroBigliettiVidimatiPerId);
+//
+//		} catch (Exception e) {
+//			log.info("Nessun biglietto vidimato trovato per l'Id inserito");
+//		}
+//
+//		System.out.println();
+//
+//		log.info("--------------------- Bigletti Vidimati Trovati dato un periodo di tempo ---------------------");
+//
+//		try {
+//			Long bigliettiTrovatiPerRangeTempo = ticDao
+//					.getNumeroBigliettiVidimatiInPeriodoTempo(LocalDate.of(2023, 6, 1), LocalDate.of(2023, 9, 1));
+//
+//			log.info("" + bigliettiTrovatiPerRangeTempo);
+//		} catch (Exception e) {
+//			log.info("Nessun biglietto vidimato trovato per il periodo inserito");
+//		}
+//
+//		System.out.println();
+//
+//		log.info("--------------------- Numero di Volte Che è stata Percorsa la Tappa ---------------------");
+//
+//		try {
+//			int numeroPassaggiPerTappa = mezzoDao.getNumeroVolteTappaPercorsa("a04b0d26-2421-47fb-8b82-22dee0e78b41");
+//			log.info("" + numeroPassaggiPerTappa);
+//		} catch (Exception e) {
+//			log.info("Nessun passaggio trovato per questo ID");
+//		}
+//
+//		System.out.println();
+//
+//		log.info("--------------------- Tempo Effettivo Di Percorrenza Tappa ---------------------");
+//
+//		try {
+//			double tempoPercorrenzaTappa = trattaDao
+//					.getTempoEffettivoPercorrenza("84b1848d-961b-423c-9e11-a8716ec16099");
+//			log.info("" + tempoPercorrenzaTappa + " ore");
+//
+//		} catch (Exception e) {
+//			log.info("Nessuna Tratta trovata con questo Id");
+//		}
+
+		Scanner scanner = new Scanner(System.in);
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+		int scelta = -1;
+		System.out.println();
+		System.out.println("-------------------------- Gestionale azienda di Trasporti --------------------------");
 		System.out.println();
 
-		List<Ticket> trovatiPerPeriodoInTot = ticDao.getTotalTicket(LocalDate.of(2023, 6, 1),
-				LocalDate.of(2023, 11, 2));
-		log.info("--------------------- Ticket Trovati range di tempo ---------------------");
-		if (trovatiPerPeriodoInTot.size() > 0) {
-			trovatiPerPeriodoInTot.stream().forEach(t -> log.info(t.toString()));
-			;
-		} else {
-			log.info("Nessun Ticket trovato per l'intervallo di tempo inserito");
-		}
-
+		System.out.println("Scegli cosa vuoi controllare: (premi 0 per uscire)");
 		System.out.println();
 
-		List<Ticket> trovatiPerPeriodoEPuntoEmissione = ticDao.getTotalTicketByEmissionPoint(LocalDate.of(2023, 6, 1),
-				LocalDate.of(2023, 8, 18), TipoDistributore.AUTOMATICO);
-		log.info("--------------------- Ticket Trovati range di tempo e Distributore ---------------------");
-		if (trovatiPerPeriodoEPuntoEmissione.size() > 0) {
-			trovatiPerPeriodoEPuntoEmissione.stream().forEach(t -> log.info(t.toString()));
-			;
-		} else {
-			log.info("Nessun Ticket trovato per l'intervallo di tempo e distributore inseriti");
+		System.out.println("1. Trova biglietti emessi in un range di tempo");
+		System.out.println("2. Trova biglietti emessi per un range di tempo e per punto di emissione");
+		System.out.println("3. Trova biglietti validi per numero di tessera");
+		System.out.println("4. Trova lo stato del mezzo tramite ID");
+		System.out.println("5. Trova numero di biglietti vidimati in un mezzo");
+		System.out.println("6. Trova biglietti vidimati in un mezzo in un periodo di tempo");
+		System.out.println("7. Trova il numero di volte che una tappa è stata percorsa");
+		System.out.println("8. Trova il tempo effettivo di percorrenza di una tappa");
+		while (scelta != 0) {
+
+			try {
+				scelta = scanner.nextInt();
+
+				switch (scelta) {
+				case 1:
+					scanner.nextLine();
+					System.out.println("Scegli un periodo di tempo");
+
+					System.out.println("Inserisci la prima data (formato: yyyy-MM-dd):");
+					String input = scanner.nextLine();
+					LocalDate data1 = LocalDate.parse(input, formatter);
+					System.out.println();
+					System.out.println("Inserisci la seconda data (formato: yyyy-MM-dd):");
+					String input2 = scanner.nextLine();
+					LocalDate data2 = LocalDate.parse(input2, formatter);
+
+					System.out.println();
+
+					List<Ticket> trovatiPerPeriodoInTot = ticDao.getTotalTicket(data1, data2);
+					log.info("--------------------- Ticket Trovati range di tempo ---------------------");
+					if (trovatiPerPeriodoInTot.size() > 0) {
+						trovatiPerPeriodoInTot.stream().forEach(t -> log.info(t.toString()));
+						;
+					} else {
+						log.info("Nessun Ticket trovato per l'intervallo di tempo inserito");
+					}
+					break;
+				case 2:
+					scanner.nextLine();
+					System.out.println(
+							"Inserisci il range di tempo e il punto di emissione per trovare i biglietti emessi");
+					System.out.println("Inserisci la prima data (formato: yyyy-MM-dd):");
+					String input3 = scanner.nextLine();
+					LocalDate data3 = LocalDate.parse(input3, formatter);
+					System.out.println();
+					System.out.println("Inserisci la seconda data (formato: yyyy-MM-dd):");
+					String input4 = scanner.nextLine();
+					LocalDate data4 = LocalDate.parse(input4, formatter);
+					System.out.println("Inserisci il Tipo di Distributore (Automatico/Fisico):");
+					String input5 = scanner.nextLine();
+
+					while (!input5.equalsIgnoreCase("automatico") && !input5.equalsIgnoreCase("fisico")) {
+						System.out.println(
+								"Tipo Distributore Inesistente! Reinserisci il Tipo di Distributore (Automatico/Fisico):");
+						input5 = scanner.nextLine();
+					}
+					TipoDistributore tipo = TipoDistributore.valueOf(input5.toUpperCase());
+					System.out.println();
+
+					List<Ticket> trovatiPerPeriodoEPuntoEmissione = ticDao.getTotalTicketByEmissionPoint(data3, data4,
+							tipo);
+					log.info(
+							"--------------------- Ticket Trovati range di tempo e Distributore ---------------------");
+					if (trovatiPerPeriodoEPuntoEmissione.size() > 0) {
+						trovatiPerPeriodoEPuntoEmissione.stream().forEach(t -> log.info(t.toString()));
+						;
+					} else {
+						log.info("Nessun Ticket trovato per l'intervallo di tempo e distributore inseriti");
+					}
+					break;
+				case 3:
+					scanner.nextLine();
+					// Gestisci l'opzione 3
+					break;
+				case 4:
+					scanner.nextLine();
+					// Gestisci l'opzione 4
+					break;
+				case 5:
+					scanner.nextLine();
+					// Gestisci l'opzione 5
+					break;
+				case 6:
+					scanner.nextLine();
+					// Gestisci l'opzione 6
+					break;
+				case 7:
+					scanner.nextLine();
+					// Gestisci l'opzione 7
+					break;
+				case 8:
+					scanner.nextLine();
+					// Gestisci l'opzione 8
+					break;
+				case 0:
+					System.out.println("Arrivederci, grazie di aver utilizzato la nostra applicazione!");
+					break;
+				default:
+					System.out.println("Opzione non valida. Riprova.");
+				}
+			} catch (InputMismatchException e) {
+				System.out.println("Non sono ammessi valori testuali. Inserisci un numero compreso tra 1 e 8");
+				scanner.nextLine();
+			}
 		}
 
 		System.out.println();
