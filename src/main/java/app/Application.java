@@ -318,7 +318,22 @@ public class Application {
 					break;
 				case 6:
 					scanner.nextLine();
-					// Gestisci l'opzione 6
+					System.out.println("Inserisci l'intervallo di tempo entro cui cercare i Biglietti Vidimati");
+					System.out.println("Inserisci la prima data (formato: yyyy-MM-dd):");
+					String input7 = scanner.nextLine();
+					LocalDate data6 = LocalDate.parse(input7, formatter);
+					System.out.println("Inserisci la seconda data (formato: yyyy-MM-dd):");
+					String input8 = scanner.nextLine();
+					LocalDate data7 = LocalDate.parse(input8, formatter);
+					log.info(
+							"--------------------- Bigletti Vidimati Trovati dato un periodo di tempo ---------------------");
+					try {
+						Long bigliettiTrovatiPerRangeTempo = ticDao.getNumeroBigliettiVidimatiInPeriodoTempo(data6,
+								data7);
+						log.info("" + bigliettiTrovatiPerRangeTempo);
+					} catch (Exception e) {
+						log.info("Nessun biglietto vidimato trovato per il periodo inserito");
+					}
 					break;
 				case 7:
 					scanner.nextLine();
