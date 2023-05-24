@@ -116,7 +116,7 @@ public class Application {
 		System.out.println();
 
 		List<Ticket> trovatiAbbonamentiValidi = ticDao.getAbbonamentiValidiPerNumeroTessera(
-				"550ec839-77b8-4a2b-840b-d9f21a5f08ce", LocalDate.of(2023, 8, 13));
+				"9c81bcbd-9424-4a31-98e7-0bc9fd84a58f", LocalDate.of(2023, 8, 13));
 		log.info("--------------------- Ticket Validi Trovati Per Numero Di Tessera ---------------------");
 		if (trovatiAbbonamentiValidi.size() > 0) {
 			trovatiAbbonamentiValidi.stream().forEach(t -> log.info(t.toString()));
@@ -130,7 +130,7 @@ public class Application {
 		log.info("--------------------- Stato Mezzo Trovato Per Id ---------------------");
 
 		try {
-			StatoMezzo trovatoStatoMezzoPerId = mezzoDao.getStatoMezzoById("a04b0d26-2421-47fb-8b82-22dee0e78b41");
+			StatoMezzo trovatoStatoMezzoPerId = mezzoDao.getStatoMezzoById("014e9c2d-116b-4e23-a708-97cc6235e62b");
 			log.info("" + trovatoStatoMezzoPerId);
 		} catch (Exception e) {
 			log.info("Nessun stato mezzo trovato per l'Id inserito");
@@ -142,7 +142,7 @@ public class Application {
 
 		try {
 			int trovatiNumeroBigliettiVidimatiPerId = mezzoDao
-					.getBigliettiVidimatiMezzoById("a04b0d26-2421-47fb-8b82-22dee0e78b41");
+					.getBigliettiVidimatiMezzoById("014e9c2d-116b-4e23-a708-97cc6235e62b");
 			log.info("" + trovatiNumeroBigliettiVidimatiPerId);
 
 		} catch (Exception e) {
@@ -167,7 +167,7 @@ public class Application {
 		log.info("--------------------- Numero di Volte Che è stata Percorsa la Tappa ---------------------");
 
 		try {
-			int numeroPassaggiPerTappa = mezzoDao.getNumeroVolteTappaPercorsa("47f89c4b-3b3d-4348-b877-8a8607e3f2d1");
+			int numeroPassaggiPerTappa = mezzoDao.getNumeroVolteTappaPercorsa("014e9c2d-116b-4e23-a708-97cc6235e62b");
 			log.info("" + numeroPassaggiPerTappa);
 		} catch (Exception e) {
 			log.info("Nessun passaggio trovato per questo ID");
@@ -179,7 +179,7 @@ public class Application {
 
 		try {
 			double tempoPercorrenzaTappa = trattaDao
-					.getTempoEffettivoPercorrenza("58d6cbc5-a96e-4cb6-85a1-f0253385e1c9");
+					.getTempoEffettivoPercorrenza("553dc971-139a-434d-b31e-f88b232bd134");
 			log.info("" + tempoPercorrenzaTappa + " ore");
 
 		} catch (Exception e) {
