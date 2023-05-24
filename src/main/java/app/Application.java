@@ -306,7 +306,15 @@ public class Application {
 					break;
 				case 5:
 					scanner.nextLine();
-					// Gestisci l'opzione 5
+					System.out.println("Inserisci l'Id del mezzo per trovare i biglietti vidimati:");
+					String mezzoId2 = scanner.nextLine();
+					try {
+						int trovatiNumeroBigliettiVidimatiPerId = mezzoDao.getBigliettiVidimatiMezzoById(mezzoId2);
+						log.info("" + trovatiNumeroBigliettiVidimatiPerId);
+
+					} catch (Exception e) {
+						log.info("Nessun biglietto vidimato trovato per l'Id inserito");
+					}
 					break;
 				case 6:
 					scanner.nextLine();
