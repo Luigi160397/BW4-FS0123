@@ -337,7 +337,20 @@ public class Application {
 					break;
 				case 7:
 					scanner.nextLine();
-					// Gestisci l'opzione 7
+					System.out.println(
+							"Inserisci id del mezzo per vedere quante volte è stata percorsa la tappa a lui associata");
+					String trattaId = scanner.nextLine();
+
+					log.info(
+							"--------------------- Numero di Volte Che è stata Percorsa la Tappa ---------------------");
+
+					try {
+						int numeroPassaggiPerTappa = mezzoDao.getNumeroVolteTappaPercorsa(trattaId);
+						log.info("" + numeroPassaggiPerTappa);
+					} catch (Exception e) {
+						log.info("Nessun passaggio trovato per questo ID");
+					}
+
 					break;
 				case 8:
 					scanner.nextLine();
