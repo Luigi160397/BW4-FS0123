@@ -127,7 +127,7 @@ public class Application {
 //		} else {
 //			log.info("Nessun Ticket valido trovato per il numero di tessera inserito");
 //		}
-//
+
 //		System.out.println();
 //
 //		log.info("--------------------- Stato Mezzo Trovato Per Id ---------------------");
@@ -272,7 +272,26 @@ public class Application {
 					break;
 				case 3:
 					scanner.nextLine();
-					// Gestisci l'opzione 3
+					System.out.println(
+							"Inserisci il numero di tessera e la data corrente per trovare i biglietti validi");
+					System.out.println("Inserisci il numero di tessera utente:");
+
+					String tessera = scanner.nextLine();
+
+					System.out.println("Inserisci la data corrente:");
+
+					String input6 = scanner.nextLine();
+					LocalDate data5 = LocalDate.parse(input6, formatter);
+
+					List<Ticket> trovatiAbbonamentiValidi = ticDao.getAbbonamentiValidiPerNumeroTessera(tessera, data5);
+					log.info("--------------------- Ticket Validi Trovati Per Numero Di Tessera ---------------------");
+					if (trovatiAbbonamentiValidi.size() > 0) {
+						trovatiAbbonamentiValidi.stream().forEach(t -> log.info(t.toString()));
+						;
+					} else {
+						log.info("Nessun Ticket valido trovato per il numero di tessera inserito");
+					}
+
 					break;
 				case 4:
 					scanner.nextLine();
