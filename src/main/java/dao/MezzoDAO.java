@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
 
+import app.Colors;
 import entities.Mezzo;
 import entities.StatoMezzo;
 import lombok.extern.slf4j.Slf4j;
@@ -51,7 +52,7 @@ public class MezzoDAO {
 		transaction.begin();
 		em.merge(p);
 		transaction.commit();
-		log.info("Mezzo con id " + p.getId() + " aggiornato!");
+		log.info(Colors.ANSI_PURPLE + "Mezzo con id " + p.getId() + " aggiornato!");
 	}
 
 	public StatoMezzo getStatoMezzoById(String id) {

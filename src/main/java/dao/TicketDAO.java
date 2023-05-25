@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
 
+import app.Colors;
 import entities.Ticket;
 import entities.TipoDistributore;
 import lombok.extern.slf4j.Slf4j;
@@ -25,7 +26,7 @@ public class TicketDAO {
 		transaction.begin();
 		em.persist(e);
 		transaction.commit();
-		log.info("Ticket salvato!");
+		log.info(Colors.ANSI_PURPLE + "Ticket salvato!");
 
 	}
 

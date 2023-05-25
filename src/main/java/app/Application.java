@@ -153,12 +153,13 @@ public class Application {
 					System.out.println();
 
 					List<Ticket> trovatiPerPeriodoInTot = ticDao.getTotalTicket(data1, data2);
-					log.info("--------------------- Ticket Trovati range di tempo ---------------------");
+					log.info(Colors.ANSI_PURPLE
+							+ "--------------------- Ticket Trovati range di tempo ---------------------");
 					if (trovatiPerPeriodoInTot.size() > 0) {
-						trovatiPerPeriodoInTot.stream().forEach(t -> log.info(t.toString()));
+						trovatiPerPeriodoInTot.stream().forEach(t -> log.info(Colors.ANSI_PURPLE + t.toString()));
 						;
 					} else {
-						log.info("Nessun Ticket trovato per l'intervallo di tempo inserito");
+						log.info(Colors.ANSI_RED + "Nessun Ticket trovato per l'intervallo di tempo inserito");
 					}
 					break;
 				case 2:
@@ -185,13 +186,15 @@ public class Application {
 
 					List<Ticket> trovatiPerPeriodoEPuntoEmissione = ticDao.getTotalTicketByEmissionPoint(data3, data4,
 							tipo);
-					log.info(
-							"--------------------- Ticket Trovati range di tempo e Distributore ---------------------");
+					log.info(Colors.ANSI_PURPLE
+							+ "--------------------- Ticket Trovati range di tempo e Distributore ---------------------");
 					if (trovatiPerPeriodoEPuntoEmissione.size() > 0) {
-						trovatiPerPeriodoEPuntoEmissione.stream().forEach(t -> log.info(t.toString()));
+						trovatiPerPeriodoEPuntoEmissione.stream()
+								.forEach(t -> log.info(Colors.ANSI_PURPLE + t.toString()));
 						;
 					} else {
-						log.info("Nessun Ticket trovato per l'intervallo di tempo e distributore inseriti");
+						log.info(Colors.ANSI_RED
+								+ "Nessun Ticket trovato per l'intervallo di tempo e distributore inseriti");
 					}
 					break;
 				case 3:
@@ -208,12 +211,13 @@ public class Application {
 					LocalDate data5 = LocalDate.parse(input6, formatter);
 
 					List<Ticket> trovatiAbbonamentiValidi = ticDao.getAbbonamentiValidiPerNumeroTessera(tessera, data5);
-					log.info("--------------------- Ticket Validi Trovati Per Numero Di Tessera ---------------------");
+					log.info(Colors.ANSI_PURPLE
+							+ "--------------------- Ticket Validi Trovati Per Numero Di Tessera ---------------------");
 					if (trovatiAbbonamentiValidi.size() > 0) {
-						trovatiAbbonamentiValidi.stream().forEach(t -> log.info(t.toString()));
+						trovatiAbbonamentiValidi.stream().forEach(t -> log.info(Colors.ANSI_PURPLE + t.toString()));
 						;
 					} else {
-						log.info("Nessun Ticket valido trovato per il numero di tessera inserito");
+						log.info(Colors.ANSI_RED + "Nessun Ticket valido trovato per il numero di tessera inserito");
 					}
 
 					break;
@@ -224,9 +228,9 @@ public class Application {
 					String mezzoId = scanner.nextLine();
 					try {
 						StatoMezzo trovatoStatoMezzoPerId = mezzoDao.getStatoMezzoById(mezzoId);
-						log.info("" + trovatoStatoMezzoPerId);
+						log.info(Colors.ANSI_PURPLE + "" + trovatoStatoMezzoPerId);
 					} catch (Exception e) {
-						log.info("Nessun stato mezzo trovato per l'Id inserito");
+						log.info(Colors.ANSI_RED + "Nessun stato mezzo trovato per l'Id inserito");
 					}
 					break;
 				case 5:
@@ -236,10 +240,10 @@ public class Application {
 					String mezzoId2 = scanner.nextLine();
 					try {
 						int trovatiNumeroBigliettiVidimatiPerId = mezzoDao.getBigliettiVidimatiMezzoById(mezzoId2);
-						log.info("" + trovatiNumeroBigliettiVidimatiPerId);
+						log.info(Colors.ANSI_PURPLE + "" + trovatiNumeroBigliettiVidimatiPerId);
 
 					} catch (Exception e) {
-						log.info("Nessun biglietto vidimato trovato per l'Id inserito");
+						log.info(Colors.ANSI_RED + "Nessun biglietto vidimato trovato per l'Id inserito");
 					}
 					break;
 				case 6:
@@ -252,14 +256,14 @@ public class Application {
 					System.out.println(Colors.ANSI_GREEN + "Inserisci la seconda data (formato: yyyy-MM-dd):");
 					String input8 = scanner.nextLine();
 					LocalDate data7 = LocalDate.parse(input8, formatter);
-					log.info(
-							"--------------------- Bigletti Vidimati Trovati dato un periodo di tempo ---------------------");
+					log.info(Colors.ANSI_PURPLE
+							+ "--------------------- Bigletti Vidimati Trovati dato un periodo di tempo ---------------------");
 					try {
 						Long bigliettiTrovatiPerRangeTempo = ticDao.getNumeroBigliettiVidimatiInPeriodoTempo(data6,
 								data7);
-						log.info("" + bigliettiTrovatiPerRangeTempo);
+						log.info(Colors.ANSI_PURPLE + "" + bigliettiTrovatiPerRangeTempo);
 					} catch (Exception e) {
-						log.info("Nessun biglietto vidimato trovato per il periodo inserito");
+						log.info(Colors.ANSI_RED + "Nessun biglietto vidimato trovato per il periodo inserito");
 					}
 					break;
 				case 7:
@@ -268,14 +272,14 @@ public class Application {
 							+ "Inserisci id del mezzo per vedere quante volte è stata percorsa la tappa a lui associata");
 					String trattaId = scanner.nextLine();
 
-					log.info(
-							"--------------------- Numero di Volte Che è stata Percorsa la Tappa ---------------------");
+					log.info(Colors.ANSI_PURPLE
+							+ "--------------------- Numero di Volte Che è stata Percorsa la Tappa ---------------------");
 
 					try {
 						int numeroPassaggiPerTappa = mezzoDao.getNumeroVolteTappaPercorsa(trattaId);
-						log.info("" + numeroPassaggiPerTappa);
+						log.info(Colors.ANSI_PURPLE + "" + numeroPassaggiPerTappa);
 					} catch (Exception e) {
-						log.info("Nessun passaggio trovato per questo ID");
+						log.info(Colors.ANSI_RED + "Nessun passaggio trovato per questo ID");
 					}
 
 					break;
@@ -284,14 +288,15 @@ public class Application {
 					System.out.println(Colors.ANSI_GREEN
 							+ "Inserisci l'Id della tratta per controllare il tempo effettivo di percorrenza della sua tappa:");
 					String trattaId2 = scanner.nextLine();
-					log.info("--------------------- Tempo Effettivo Di Percorrenza Tappa ---------------------");
+					log.info(Colors.ANSI_PURPLE
+							+ "--------------------- Tempo Effettivo Di Percorrenza Tappa ---------------------");
 
 					try {
 						double tempoPercorrenzaTappa = trattaDao.getTempoEffettivoPercorrenza(trattaId2);
-						log.info("" + tempoPercorrenzaTappa + " ore");
+						log.info(Colors.ANSI_PURPLE + "" + tempoPercorrenzaTappa + " ore");
 
 					} catch (Exception e) {
-						log.info("Nessuna Tratta trovata con questo Id");
+						log.info(Colors.ANSI_RED + "Nessuna Tratta trovata con questo Id");
 					}
 
 					break;
@@ -376,36 +381,39 @@ public class Application {
 					System.out.println(
 							Colors.ANSI_GREEN + "Inserisci l'id della tratta per controllare quale mezzo la percorre:");
 					String input18 = scanner.nextLine();
-					log.info("--------------------- Mezzo Trovato per Tratta ---------------------");
+					log.info(Colors.ANSI_PURPLE
+							+ "--------------------- Mezzo Trovato per Tratta ---------------------");
 					try {
 						Mezzo mezzoTrovato1 = mezzoDao.getMezzoByIdTratta(input18);
-						log.info("" + mezzoTrovato1);
+						log.info(Colors.ANSI_PURPLE + "" + mezzoTrovato1);
 					} catch (Exception e) {
-						log.info("Nessun mezzo trovato per questa Tratta");
+						log.info(Colors.ANSI_RED + "Nessun mezzo trovato per questa Tratta");
 					}
 					break;
 				case 14:
 					scanner.nextLine();
 
 					List<Mezzo> mezziInServizio = mezzoDao.getMezziInServizio();
-					log.info("--------------------- Mezzi in servizio trovati ---------------------");
+					log.info(Colors.ANSI_PURPLE
+							+ "--------------------- Mezzi in servizio trovati ---------------------");
 					if (mezziInServizio.size() > 0) {
-						mezziInServizio.stream().forEach(t -> log.info(t.toString()));
+						mezziInServizio.stream().forEach(t -> log.info(Colors.ANSI_PURPLE + t.toString()));
 						;
 					} else {
-						log.info("Nessun mezzo in servizio trovato");
+						log.info(Colors.ANSI_RED + "Nessun mezzo in servizio trovato");
 					}
 					break;
 				case 15:
 					scanner.nextLine();
 
 					List<Mezzo> mezziInManutenzione = mezzoDao.getMezziInManutenzione();
-					log.info("--------------------- Mezzi in manutenzione trovati ---------------------");
+					log.info(Colors.ANSI_PURPLE
+							+ "--------------------- Mezzi in manutenzione trovati ---------------------");
 					if (mezziInManutenzione.size() > 0) {
-						mezziInManutenzione.stream().forEach(t -> log.info(t.toString()));
+						mezziInManutenzione.stream().forEach(t -> log.info(Colors.ANSI_PURPLE + t.toString()));
 						;
 					} else {
-						log.info("Nessun mezzo in manutenzione trovato");
+						log.info(Colors.ANSI_RED + "Nessun mezzo in manutenzione trovato");
 					}
 					break;
 				case 0:

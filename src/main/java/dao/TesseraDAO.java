@@ -5,6 +5,7 @@ import java.util.UUID;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
+import app.Colors;
 import entities.Tessera;
 import lombok.extern.slf4j.Slf4j;
 
@@ -21,7 +22,7 @@ public class TesseraDAO {
 		transaction.begin();
 		em.persist(e);
 		transaction.commit();
-		log.info("Tessera salvata!");
+		log.info(Colors.ANSI_PURPLE + "Tessera salvata!");
 
 	}
 
