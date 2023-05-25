@@ -288,6 +288,7 @@ public class Application {
 
 					break;
 				case 9:
+					scanner.nextLine();
 					System.out.println(Colors.ANSI_GREEN + "Inserisci il nome del nuovo utente:");
 					String input10 = scanner.nextLine();
 					System.out.println(Colors.ANSI_GREEN + "Inserisci il cognome del nuovo utente:");
