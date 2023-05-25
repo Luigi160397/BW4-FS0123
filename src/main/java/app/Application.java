@@ -123,6 +123,7 @@ public class Application {
 		System.out.println(Colors.ANSI_GREEN + "6. Trova biglietti vidimati in un mezzo in un periodo di tempo");
 		System.out.println(Colors.ANSI_GREEN + "7. Trova il numero di volte che una tappa è stata percorsa");
 		System.out.println(Colors.ANSI_GREEN + "8. Trova il tempo effettivo di percorrenza di una tappa");
+		System.out.println(Colors.ANSI_GREEN + "9. Registra nuovo utente");
 		while (scelta != 0) {
 
 			try {
@@ -286,6 +287,20 @@ public class Application {
 					}
 
 					break;
+				case 9:
+					System.out.println(Colors.ANSI_GREEN + "Inserisci il nome del nuovo utente:");
+					String input10 = scanner.nextLine();
+					System.out.println(Colors.ANSI_GREEN + "Inserisci il cognome del nuovo utente:");
+					String input11 = scanner.nextLine();
+					System.out.println(
+							Colors.ANSI_GREEN + "Inserisci la data di nascita del nuovo utente (formato: yyyy-MM-dd):");
+					String input12 = scanner.nextLine();
+					LocalDate data8 = LocalDate.parse(input12, formatter);
+					Tessera tessera4 = new Tessera(input10, input11, data8, LocalDate.now());
+					tessDao.save(tessera4);
+
+					break;
+
 				case 0:
 					System.out.println(
 							Colors.ANSI_GREEN + "Arrivederci, grazie di aver utilizzato la nostra applicazione!");
