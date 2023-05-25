@@ -129,6 +129,7 @@ public class Application {
 		System.out.println(Colors.ANSI_GREEN + "10. Emetti nuovo biglietto");
 		System.out.println(Colors.ANSI_GREEN + "11. Emetti nuovo abbonamento");
 		System.out.println(Colors.ANSI_GREEN + "12. Cambia lo stato di un mezzo");
+		System.out.println(Colors.ANSI_GREEN + "13. Cerca quale mezzo percorre una tratta");
 		while (scelta != 0) {
 
 			try {
@@ -353,7 +354,6 @@ public class Application {
 
 					Mezzo mezzoTrovato = mezzoDao.getById(UUID.fromString(input16));
 					if (statoMezzo.equals(StatoMezzo.IN_MANUTENZIONE)) {
-
 						mezzoTrovato.setStato(statoMezzo);
 						mezzoTrovato.setDataInizioServizio(null);
 						mezzoTrovato.setDataFineServizio(null);
@@ -369,7 +369,19 @@ public class Application {
 						mezzoDao.update(mezzoTrovato);
 					}
 					break;
-
+				case 13:
+					scanner.nextLine();
+					System.out.println(
+							Colors.ANSI_GREEN + "Inserisci l'id della tratta per controllare quale mezzo la percorre:");
+					String input18 = scanner.nextLine();
+					log.info("--------------------- Mezzo Trovato per Tratta ---------------------");
+					try {
+						Mezzo mezzoTrovato1 = mezzoDao.getMezzoByIdTratta(input18);
+						log.info("" + mezzoTrovato1);
+					} catch (Exception e) {
+						log.info("Nessun mezzo trovato per questa Tratta");
+					}
+					break;
 				case 0:
 					System.out.println(
 							Colors.ANSI_GREEN + "Arrivederci, grazie di aver utilizzato la nostra applicazione!");

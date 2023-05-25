@@ -70,4 +70,10 @@ public class MezzoDAO {
 		query.setParameter("id", UUID.fromString(id));
 		return query.getSingleResult();
 	}
+
+	public Mezzo getMezzoByIdTratta(String idTratta) {
+		TypedQuery<Mezzo> query = em.createNamedQuery("getMezzoByTrattaId", Mezzo.class);
+		query.setParameter("idTratta", UUID.fromString(idTratta));
+		return query.getSingleResult();
+	}
 }

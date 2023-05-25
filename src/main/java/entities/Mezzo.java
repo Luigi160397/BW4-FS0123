@@ -29,8 +29,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @NamedQuery(name = "getStatoMezzo", query = "SELECT s.stato FROM Mezzo s WHERE s.id = :id")
 @NamedQuery(name = "getBigliettiVidimatiMezzo", query = "SELECT s.numeroBigliettiVidimati FROM Mezzo s WHERE s.id = :id")
-
 @NamedQuery(name = "getNumeroPassaggiTappa", query = "SELECT t.tratta.tappa.numeroVoltePercorsa FROM Mezzo t WHERE t.id = :id")
+@NamedQuery(name = "getMezzoByTrattaId", query = "SELECT m FROM Mezzo m WHERE m.tratta.id = :idTratta")
 public abstract class Mezzo {
 	@Id
 	@GeneratedValue
@@ -80,7 +80,7 @@ public abstract class Mezzo {
 		return "Mezzo [id=" + id + ", capienza=" + capienza + ", stato=" + stato + ", dataInizioServizio="
 				+ dataInizioServizio + ", dataFineServizio=" + dataFineServizio + ", dataInizioManutenzione="
 				+ dataInizioManutenzione + ", dataFineManutenzione=" + dataFineManutenzione
-				+ ", numeroBigliettiVidimati=" + numeroBigliettiVidimati + ", tratta=" + tratta + "]";
+				+ ", numeroBigliettiVidimati=" + numeroBigliettiVidimati + "]";
 	}
 
 }
