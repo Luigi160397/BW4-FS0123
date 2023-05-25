@@ -26,6 +26,7 @@ import entities.Tessera;
 import entities.Ticket;
 import entities.TipoAbbonamento;
 import entities.TipoDistributore;
+import entities.Tram;
 import entities.Tratta;
 import lombok.extern.slf4j.Slf4j;
 import utils.JpaUtil;
@@ -48,49 +49,58 @@ public class Application {
 
 		Tessera tessera1 = new Tessera("Paolo", "Bitta", LocalDate.of(1975, 3, 23), LocalDate.of(2023, 3, 10));
 		Tessera tessera2 = new Tessera("Aldo", "Baglio", LocalDate.of(1968, 7, 17), LocalDate.of(2023, 4, 12));
+		Tessera tessera3 = new Tessera("Ajeje", "Brazorf", LocalDate.of(1978, 6, 17), LocalDate.of(2023, 4, 15));
 
 		Distributore distributore1 = new Distributore(TipoDistributore.AUTOMATICO, StatoDistributore.ATTIVO);
+		Distributore distributore2 = new Distributore(TipoDistributore.FISICO, null);
 
 		Tappa tappa1 = new Tappa("Colosseo", "Fori Imperiali", 5);
 		Tappa tappa2 = new Tappa("Colosseo", "Cavour", 7);
+		Tappa tappa3 = new Tappa("Colosseo", "Stadio Olimpico", 10);
 
 		Tratta tratta1 = new Tratta(null, "Colosseo", "Termini", 0.40, tappa1, 0.30);
 		Tratta tratta2 = new Tratta(null, "Colosseo", "Termini", 0.40, tappa2, 0.30);
+		Tratta tratta3 = new Tratta(null, "Colosseo", "Termini", 0.50, tappa3, 0.40);
 
 		Bus bus1 = new Bus(50, StatoMezzo.IN_SERVIZIO, LocalDate.of(2023, 10, 14), LocalDate.of(2023, 10, 17), null,
 				null, 15, tratta1);
 		Bus bus2 = new Bus(50, StatoMezzo.IN_SERVIZIO, LocalDate.of(2023, 10, 14), LocalDate.of(2023, 10, 17), null,
 				null, 35, tratta2);
+		Tram tram1 = new Tram(80, StatoMezzo.IN_SERVIZIO, LocalDate.of(2023, 10, 14), LocalDate.of(2023, 10, 17), null,
+				null, 27, tratta3);
 
 		Biglietto biglietto1 = new Biglietto(tessera1, LocalDate.of(2023, 10, 15), distributore1,
 				LocalDate.of(2023, 10, 16), bus1);
+		Biglietto biglietto2 = new Biglietto(tessera3, LocalDate.of(2023, 10, 15), distributore2,
+				LocalDate.of(2023, 10, 16), tram1);
 
 		Abbonamento abbonamento1 = new Abbonamento(tessera2, LocalDate.of(2023, 7, 16), distributore1,
 				LocalDate.of(2023, 7, 17), bus2, TipoAbbonamento.MENSILE);
 
 //		tessDao.save(tessera1);
 //		tessDao.save(tessera2);
-//
+		tessDao.save(tessera3);
 //		distDao.save(distributore1);
 //		distDao.save(distributore1);
-//
+		distDao.save(distributore2);
 //		tappaDao.save(tappa1);
 //		tappaDao.save(tappa2);
-//
+		tappaDao.save(tappa3);
 //		trattaDao.save(tratta1);
 //		trattaDao.save(tratta2);
-//
+		trattaDao.save(tratta3);
 //		mezzoDao.save(bus1);
 //		mezzoDao.save(bus2);
-//
+		mezzoDao.save(tram1);
 //		ticDao.save(biglietto1);
 //		ticDao.save(abbonamento1);
-//
+		ticDao.save(biglietto2);
 //		tratta1.setMezzo(bus1);
 //		tratta2.setMezzo(bus2);
-//
+		tratta3.setMezzo(tram1);
 //		trattaDao.update(tratta1);
 //		trattaDao.update(tratta2);
+		trattaDao.update(tratta3);
 
 		Scanner scanner = new Scanner(System.in);
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
