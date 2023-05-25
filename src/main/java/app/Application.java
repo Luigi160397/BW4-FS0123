@@ -2,6 +2,7 @@ package app;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
@@ -144,11 +145,36 @@ public class Application {
 
 					System.out.println(Colors.ANSI_GREEN + "Inserisci la prima data (formato: yyyy-MM-dd):");
 					String input = scanner.nextLine();
-					LocalDate data1 = LocalDate.parse(input, formatter);
+					LocalDate data1 = null;
+					boolean isValidInput = false;
+
+					while (!isValidInput) {
+						try {
+							data1 = LocalDate.parse(input, formatter);
+							isValidInput = true;
+						} catch (DateTimeParseException e) {
+							System.out.println(Colors.ANSI_RED
+									+ "Data inserita in formato non valido. Reinserisci la prima data (formato: yyyy-MM-dd):");
+							input = scanner.nextLine();
+						}
+					}
+
 					System.out.println();
 					System.out.println(Colors.ANSI_GREEN + "Inserisci la seconda data (formato: yyyy-MM-dd):");
 					String input2 = scanner.nextLine();
-					LocalDate data2 = LocalDate.parse(input2, formatter);
+					LocalDate data2 = null;
+					isValidInput = false;
+
+					while (!isValidInput) {
+						try {
+							data2 = LocalDate.parse(input2, formatter);
+							isValidInput = true;
+						} catch (DateTimeParseException e) {
+							System.out.println(Colors.ANSI_RED
+									+ "Data inserita in formato non valido. Reinserisci la seconda data (formato: yyyy-MM-dd):");
+							input2 = scanner.nextLine();
+						}
+					}
 
 					System.out.println();
 
@@ -157,22 +183,48 @@ public class Application {
 							+ "--------------------- Ticket Trovati range di tempo ---------------------");
 					if (trovatiPerPeriodoInTot.size() > 0) {
 						trovatiPerPeriodoInTot.stream().forEach(t -> log.info(Colors.ANSI_PURPLE + t.toString()));
-						;
 					} else {
 						log.info(Colors.ANSI_RED + "Nessun Ticket trovato per l'intervallo di tempo inserito");
 					}
 					break;
+
 				case 2:
 					scanner.nextLine();
 					System.out.println(Colors.ANSI_GREEN
 							+ "Inserisci il range di tempo e il punto di emissione per trovare i biglietti emessi");
 					System.out.println(Colors.ANSI_GREEN + "Inserisci la prima data (formato: yyyy-MM-dd):");
 					String input3 = scanner.nextLine();
-					LocalDate data3 = LocalDate.parse(input3, formatter);
+					LocalDate data3 = null;
+					boolean isValidInput3 = false;
+
+					while (!isValidInput3) {
+						try {
+							data3 = LocalDate.parse(input3, formatter);
+							isValidInput3 = true;
+						} catch (DateTimeParseException e) {
+							System.out.println(Colors.ANSI_RED
+									+ "Data inserita in formato non valido. Reinserisci la prima data (formato: yyyy-MM-dd):");
+							input3 = scanner.nextLine();
+						}
+					}
+
 					System.out.println();
 					System.out.println(Colors.ANSI_GREEN + "Inserisci la seconda data (formato: yyyy-MM-dd):");
 					String input4 = scanner.nextLine();
-					LocalDate data4 = LocalDate.parse(input4, formatter);
+					LocalDate data4 = null;
+					boolean isValidInput4 = false;
+
+					while (!isValidInput4) {
+						try {
+							data4 = LocalDate.parse(input4, formatter);
+							isValidInput4 = true;
+						} catch (DateTimeParseException e) {
+							System.out.println(Colors.ANSI_RED
+									+ "Data inserita in formato non valido. Reinserisci la seconda data (formato: yyyy-MM-dd):");
+							input4 = scanner.nextLine();
+						}
+					}
+
 					System.out.println(Colors.ANSI_GREEN + "Inserisci il Tipo di Distributore (Automatico/Fisico):");
 					String input5 = scanner.nextLine();
 
@@ -181,6 +233,7 @@ public class Application {
 								+ "Tipo Distributore Inesistente! Reinserisci il Tipo di Distributore (Automatico/Fisico):");
 						input5 = scanner.nextLine();
 					}
+
 					TipoDistributore tipo = TipoDistributore.valueOf(input5.toUpperCase());
 					System.out.println();
 
@@ -191,36 +244,45 @@ public class Application {
 					if (trovatiPerPeriodoEPuntoEmissione.size() > 0) {
 						trovatiPerPeriodoEPuntoEmissione.stream()
 								.forEach(t -> log.info(Colors.ANSI_PURPLE + t.toString()));
-						;
 					} else {
 						log.info(Colors.ANSI_RED
 								+ "Nessun Ticket trovato per l'intervallo di tempo e distributore inseriti");
 					}
 					break;
+
 				case 3:
 					scanner.nextLine();
 					System.out.println(Colors.ANSI_GREEN
 							+ "Inserisci il numero di tessera e la data corrente per trovare i biglietti validi");
 					System.out.println(Colors.ANSI_GREEN + "Inserisci il numero di tessera utente:");
-
 					String tessera = scanner.nextLine();
-
 					System.out.println(Colors.ANSI_GREEN + "Inserisci la data corrente:");
-
 					String input6 = scanner.nextLine();
-					LocalDate data5 = LocalDate.parse(input6, formatter);
+					LocalDate data5 = null;
+					boolean isValidInput6 = false;
+
+					while (!isValidInput6) {
+						try {
+							data5 = LocalDate.parse(input6, formatter);
+							isValidInput6 = true;
+						} catch (DateTimeParseException e) {
+							System.out.println(Colors.ANSI_RED
+									+ "Data inserita in formato non valido. Reinserisci la data corrente (formato: yyyy-MM-dd):");
+							input6 = scanner.nextLine();
+						}
+					}
 
 					List<Ticket> trovatiAbbonamentiValidi = ticDao.getAbbonamentiValidiPerNumeroTessera(tessera, data5);
 					log.info(Colors.ANSI_PURPLE
 							+ "--------------------- Ticket Validi Trovati Per Numero Di Tessera ---------------------");
 					if (trovatiAbbonamentiValidi.size() > 0) {
 						trovatiAbbonamentiValidi.stream().forEach(t -> log.info(Colors.ANSI_PURPLE + t.toString()));
-						;
 					} else {
 						log.info(Colors.ANSI_RED + "Nessun Ticket valido trovato per il numero di tessera inserito");
 					}
 
 					break;
+
 				case 4:
 					scanner.nextLine();
 					System.out
@@ -252,10 +314,36 @@ public class Application {
 							+ "Inserisci l'intervallo di tempo entro cui cercare i Biglietti Vidimati");
 					System.out.println(Colors.ANSI_GREEN + "Inserisci la prima data (formato: yyyy-MM-dd):");
 					String input7 = scanner.nextLine();
-					LocalDate data6 = LocalDate.parse(input7, formatter);
+					LocalDate data6 = null;
+					boolean isValidInput7 = false;
+
+					while (!isValidInput7) {
+						try {
+							data6 = LocalDate.parse(input7, formatter);
+							isValidInput7 = true;
+						} catch (DateTimeParseException e) {
+							System.out.println(Colors.ANSI_RED
+									+ "Data inserita in formato non valido. Reinserisci la prima data (formato: yyyy-MM-dd):");
+							input7 = scanner.nextLine();
+						}
+					}
+
 					System.out.println(Colors.ANSI_GREEN + "Inserisci la seconda data (formato: yyyy-MM-dd):");
 					String input8 = scanner.nextLine();
-					LocalDate data7 = LocalDate.parse(input8, formatter);
+					LocalDate data7 = null;
+					boolean isValidInput8 = false;
+
+					while (!isValidInput8) {
+						try {
+							data7 = LocalDate.parse(input8, formatter);
+							isValidInput8 = true;
+						} catch (DateTimeParseException e) {
+							System.out.println(Colors.ANSI_RED
+									+ "Data inserita in formato non valido. Reinserisci la seconda data (formato: yyyy-MM-dd):");
+							input8 = scanner.nextLine();
+						}
+					}
+
 					log.info(Colors.ANSI_PURPLE
 							+ "--------------------- Bigletti Vidimati Trovati dato un periodo di tempo ---------------------");
 					try {
@@ -265,7 +353,9 @@ public class Application {
 					} catch (Exception e) {
 						log.info(Colors.ANSI_RED + "Nessun biglietto vidimato trovato per il periodo inserito");
 					}
+
 					break;
+
 				case 7:
 					scanner.nextLine();
 					System.out.println(Colors.ANSI_GREEN
@@ -309,10 +399,24 @@ public class Application {
 					System.out.println(
 							Colors.ANSI_GREEN + "Inserisci la data di nascita del nuovo utente (formato: yyyy-MM-dd):");
 					String input12 = scanner.nextLine();
-					LocalDate data8 = LocalDate.parse(input12, formatter);
+					LocalDate data8 = null;
+					boolean isValidInput12 = false;
+
+					while (!isValidInput12) {
+						try {
+							data8 = LocalDate.parse(input12, formatter);
+							isValidInput12 = true;
+						} catch (DateTimeParseException e) {
+							System.out.println(Colors.ANSI_RED
+									+ "Data di nascita inserita in formato non valido. Reinserisci la data di nascita (formato: yyyy-MM-dd):");
+							input12 = scanner.nextLine();
+						}
+					}
+
 					Tessera tessera4 = new Tessera(input10, input11, data8, LocalDate.now());
 					tessDao.save(tessera4);
 					break;
+
 				case 10:
 					scanner.nextLine();
 					System.out.println(Colors.ANSI_GREEN + "Inserisci il numero di tessera dell'utente:");
