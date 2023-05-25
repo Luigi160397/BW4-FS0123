@@ -44,8 +44,8 @@ public class Abbonamento extends Ticket {
 
 	@Override
 	public String toString() {
-		return "Abbonamento [tipoAbbonamento=" + tipoAbbonamento + ", getId()=" + getId() + ", getDataEmissione()="
-				+ getDataEmissione() + ", getDataScadenza()=" + getDataScadenza() + ", getDataTimbratura()="
+		return "Abbonamento [tipoAbbonamento=" + tipoAbbonamento + ", Id=" + getId() + ", Data Emissione="
+				+ getDataEmissione() + ", DataScadenza=" + getDataScadenza() + ", Data Timbratura="
 				+ getDataTimbratura() + "]";
 	}
 
