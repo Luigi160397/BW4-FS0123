@@ -126,6 +126,7 @@ public class Application {
 		System.out.println(Colors.ANSI_GREEN + "8. Trova il tempo effettivo di percorrenza di una tappa");
 		System.out.println(Colors.ANSI_GREEN + "9. Registra nuovo utente");
 		System.out.println(Colors.ANSI_GREEN + "10. Emetti nuovo biglietto");
+		System.out.println(Colors.ANSI_GREEN + "11. Emetti nuovo abbonamento");
 		while (scelta != 0) {
 
 			try {
@@ -312,6 +313,26 @@ public class Application {
 					Biglietto biglietto3 = new Biglietto(tessera5, LocalDate.now(), distributore3);
 					ticDao.save(biglietto3);
 					break;
+				case 11:
+					scanner.nextLine();
+					System.out.println(Colors.ANSI_GREEN + "Inserisci il numero di tessera dell'utente:");
+					String input14 = scanner.nextLine();
+					Tessera tessera6 = tessDao.getById(UUID.fromString(input14));
+					Distributore distributore4 = distDao
+							.getById(UUID.fromString("f7bb76b6-ee9a-4a44-ad97-99a0022df94f"));
+					System.out.println(Colors.ANSI_GREEN + "Inserisci il tipo di abbonamento (Settimanale/Mensile):");
+					String input15 = scanner.nextLine();
+
+					while (!input15.equalsIgnoreCase("settimanale") && !input15.equalsIgnoreCase("mensile")) {
+						System.out.println(Colors.ANSI_RED
+								+ "Tipo abbonamento Inesistente! Reinserisci il Tipo di abbonamento (Settimanale/Mensile):");
+						input15 = scanner.nextLine();
+					}
+					TipoAbbonamento tipo1 = TipoAbbonamento.valueOf(input15.toUpperCase());
+					Abbonamento abbonamento = new Abbonamento(tessera6, LocalDate.now(), distributore4, tipo1);
+					ticDao.save(abbonamento);
+					break;
+
 				case 0:
 					System.out.println(
 							Colors.ANSI_GREEN + "Arrivederci, grazie di aver utilizzato la nostra applicazione!");

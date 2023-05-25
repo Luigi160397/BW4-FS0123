@@ -30,6 +30,18 @@ public class Abbonamento extends Ticket {
 		}
 	}
 
+	public Abbonamento(Tessera tessera, LocalDate dataEmissione, Distributore distributore,
+			TipoAbbonamento tipoAbbonamento) {
+		super(tessera, dataEmissione, distributore);
+		this.tipoAbbonamento = tipoAbbonamento;
+
+		if (tipoAbbonamento.equals(TipoAbbonamento.SETTIMANALE)) {
+			setDataScadenza(dataEmissione.plusWeeks(1));
+		} else {
+			setDataScadenza(dataEmissione.plusMonths(1));
+		}
+	}
+
 	@Override
 	public String toString() {
 		return "Abbonamento [tipoAbbonamento=" + tipoAbbonamento + ", getId()=" + getId() + ", getDataEmissione()="
