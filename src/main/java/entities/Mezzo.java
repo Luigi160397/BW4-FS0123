@@ -31,6 +31,8 @@ import lombok.Setter;
 @NamedQuery(name = "getBigliettiVidimatiMezzo", query = "SELECT s.numeroBigliettiVidimati FROM Mezzo s WHERE s.id = :id")
 @NamedQuery(name = "getNumeroPassaggiTappa", query = "SELECT t.tratta.tappa.numeroVoltePercorsa FROM Mezzo t WHERE t.id = :id")
 @NamedQuery(name = "getMezzoByTrattaId", query = "SELECT m FROM Mezzo m WHERE m.tratta.id = :idTratta")
+@NamedQuery(name = "getMezziInServizio", query = "SELECT m FROM Mezzo m WHERE m.stato = :stato")
+
 public abstract class Mezzo {
 	@Id
 	@GeneratedValue

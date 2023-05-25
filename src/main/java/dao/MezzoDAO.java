@@ -1,5 +1,6 @@
 package dao;
 
+import java.util.List;
 import java.util.UUID;
 
 import javax.persistence.EntityManager;
@@ -75,5 +76,11 @@ public class MezzoDAO {
 		TypedQuery<Mezzo> query = em.createNamedQuery("getMezzoByTrattaId", Mezzo.class);
 		query.setParameter("idTratta", UUID.fromString(idTratta));
 		return query.getSingleResult();
+	}
+
+	public List<Mezzo> getMezziInServizio() {
+		TypedQuery<Mezzo> query = em.createNamedQuery("getMezziInServizio", Mezzo.class);
+		query.setParameter("stato", StatoMezzo.IN_SERVIZIO);
+		return query.getResultList();
 	}
 }

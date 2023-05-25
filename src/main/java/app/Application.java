@@ -130,6 +130,7 @@ public class Application {
 		System.out.println(Colors.ANSI_GREEN + "11. Emetti nuovo abbonamento");
 		System.out.println(Colors.ANSI_GREEN + "12. Cambia lo stato di un mezzo");
 		System.out.println(Colors.ANSI_GREEN + "13. Cerca quale mezzo percorre una tratta");
+		System.out.println(Colors.ANSI_GREEN + "14. Cerca tutti i mezzi in servizio");
 		while (scelta != 0) {
 
 			try {
@@ -380,6 +381,18 @@ public class Application {
 						log.info("" + mezzoTrovato1);
 					} catch (Exception e) {
 						log.info("Nessun mezzo trovato per questa Tratta");
+					}
+					break;
+				case 14:
+					scanner.nextLine();
+
+					List<Mezzo> mezziInServizio = mezzoDao.getMezziInServizio();
+					log.info("--------------------- Mezzi in servizio trovati ---------------------");
+					if (mezziInServizio.size() > 0) {
+						mezziInServizio.stream().forEach(t -> log.info(t.toString()));
+						;
+					} else {
+						log.info("Nessun mezzo in servizio trovato");
 					}
 					break;
 				case 0:
