@@ -79,48 +79,50 @@ public class Application {
 
 //		tessDao.save(tessera1);
 //		tessDao.save(tessera2);
-		tessDao.save(tessera3);
+//		tessDao.save(tessera3);
 //		distDao.save(distributore1);
 //		distDao.save(distributore1);
-		distDao.save(distributore2);
+//		distDao.save(distributore2);
 //		tappaDao.save(tappa1);
 //		tappaDao.save(tappa2);
-		tappaDao.save(tappa3);
+//		tappaDao.save(tappa3);
 //		trattaDao.save(tratta1);
 //		trattaDao.save(tratta2);
-		trattaDao.save(tratta3);
+//		trattaDao.save(tratta3);
 //		mezzoDao.save(bus1);
 //		mezzoDao.save(bus2);
-		mezzoDao.save(tram1);
+//		mezzoDao.save(tram1);
 //		ticDao.save(biglietto1);
 //		ticDao.save(abbonamento1);
-		ticDao.save(biglietto2);
+//		ticDao.save(biglietto2);
 //		tratta1.setMezzo(bus1);
 //		tratta2.setMezzo(bus2);
-		tratta3.setMezzo(tram1);
+//		tratta3.setMezzo(tram1);
 //		trattaDao.update(tratta1);
 //		trattaDao.update(tratta2);
-		trattaDao.update(tratta3);
+//		trattaDao.update(tratta3);
 
 		Scanner scanner = new Scanner(System.in);
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
 		int scelta = -1;
 		System.out.println();
-		System.out.println("-------------------------- Gestionale azienda di Trasporti --------------------------");
+		System.out.println(Colors.ANSI_CYAN
+				+ "-------------------------- Gestionale azienda di Trasporti --------------------------");
 		System.out.println();
 
-		System.out.println("Scegli cosa vuoi controllare: (premi 0 per uscire)");
+		System.out.println(Colors.ANSI_GREEN + "Scegli cosa vuoi controllare: (premi 0 per uscire)");
 		System.out.println();
 
-		System.out.println("1. Trova biglietti emessi in un range di tempo");
-		System.out.println("2. Trova biglietti emessi per un range di tempo e per punto di emissione");
-		System.out.println("3. Trova biglietti validi per numero di tessera");
-		System.out.println("4. Trova lo stato del mezzo tramite ID");
-		System.out.println("5. Trova numero di biglietti vidimati in un mezzo");
-		System.out.println("6. Trova biglietti vidimati in un mezzo in un periodo di tempo");
-		System.out.println("7. Trova il numero di volte che una tappa è stata percorsa");
-		System.out.println("8. Trova il tempo effettivo di percorrenza di una tappa");
+		System.out.println(Colors.ANSI_GREEN + "1. Trova biglietti emessi in un range di tempo");
+		System.out.println(
+				Colors.ANSI_GREEN + "2. Trova biglietti emessi per un range di tempo e per punto di emissione");
+		System.out.println(Colors.ANSI_GREEN + "3. Trova biglietti validi per numero di tessera");
+		System.out.println(Colors.ANSI_GREEN + "4. Trova lo stato del mezzo tramite ID");
+		System.out.println(Colors.ANSI_GREEN + "5. Trova numero di biglietti vidimati in un mezzo");
+		System.out.println(Colors.ANSI_GREEN + "6. Trova biglietti vidimati in un mezzo in un periodo di tempo");
+		System.out.println(Colors.ANSI_GREEN + "7. Trova il numero di volte che una tappa è stata percorsa");
+		System.out.println(Colors.ANSI_GREEN + "8. Trova il tempo effettivo di percorrenza di una tappa");
 		while (scelta != 0) {
 
 			try {
@@ -129,13 +131,13 @@ public class Application {
 				switch (scelta) {
 				case 1:
 					scanner.nextLine();
-					System.out.println("Scegli un periodo di tempo");
+					System.out.println(Colors.ANSI_GREEN + "Scegli un periodo di tempo");
 
-					System.out.println("Inserisci la prima data (formato: yyyy-MM-dd):");
+					System.out.println(Colors.ANSI_GREEN + "Inserisci la prima data (formato: yyyy-MM-dd):");
 					String input = scanner.nextLine();
 					LocalDate data1 = LocalDate.parse(input, formatter);
 					System.out.println();
-					System.out.println("Inserisci la seconda data (formato: yyyy-MM-dd):");
+					System.out.println(Colors.ANSI_GREEN + "Inserisci la seconda data (formato: yyyy-MM-dd):");
 					String input2 = scanner.nextLine();
 					LocalDate data2 = LocalDate.parse(input2, formatter);
 
@@ -152,21 +154,21 @@ public class Application {
 					break;
 				case 2:
 					scanner.nextLine();
-					System.out.println(
-							"Inserisci il range di tempo e il punto di emissione per trovare i biglietti emessi");
-					System.out.println("Inserisci la prima data (formato: yyyy-MM-dd):");
+					System.out.println(Colors.ANSI_GREEN
+							+ "Inserisci il range di tempo e il punto di emissione per trovare i biglietti emessi");
+					System.out.println(Colors.ANSI_GREEN + "Inserisci la prima data (formato: yyyy-MM-dd):");
 					String input3 = scanner.nextLine();
 					LocalDate data3 = LocalDate.parse(input3, formatter);
 					System.out.println();
-					System.out.println("Inserisci la seconda data (formato: yyyy-MM-dd):");
+					System.out.println(Colors.ANSI_GREEN + "Inserisci la seconda data (formato: yyyy-MM-dd):");
 					String input4 = scanner.nextLine();
 					LocalDate data4 = LocalDate.parse(input4, formatter);
-					System.out.println("Inserisci il Tipo di Distributore (Automatico/Fisico):");
+					System.out.println(Colors.ANSI_GREEN + "Inserisci il Tipo di Distributore (Automatico/Fisico):");
 					String input5 = scanner.nextLine();
 
 					while (!input5.equalsIgnoreCase("automatico") && !input5.equalsIgnoreCase("fisico")) {
-						System.out.println(
-								"Tipo Distributore Inesistente! Reinserisci il Tipo di Distributore (Automatico/Fisico):");
+						System.out.println(Colors.ANSI_RED
+								+ "Tipo Distributore Inesistente! Reinserisci il Tipo di Distributore (Automatico/Fisico):");
 						input5 = scanner.nextLine();
 					}
 					TipoDistributore tipo = TipoDistributore.valueOf(input5.toUpperCase());
@@ -185,13 +187,13 @@ public class Application {
 					break;
 				case 3:
 					scanner.nextLine();
-					System.out.println(
-							"Inserisci il numero di tessera e la data corrente per trovare i biglietti validi");
-					System.out.println("Inserisci il numero di tessera utente:");
+					System.out.println(Colors.ANSI_GREEN
+							+ "Inserisci il numero di tessera e la data corrente per trovare i biglietti validi");
+					System.out.println(Colors.ANSI_GREEN + "Inserisci il numero di tessera utente:");
 
 					String tessera = scanner.nextLine();
 
-					System.out.println("Inserisci la data corrente:");
+					System.out.println(Colors.ANSI_GREEN + "Inserisci la data corrente:");
 
 					String input6 = scanner.nextLine();
 					LocalDate data5 = LocalDate.parse(input6, formatter);
@@ -208,7 +210,8 @@ public class Application {
 					break;
 				case 4:
 					scanner.nextLine();
-					System.out.println("Inserisci l'Id del mezzo per trovare il suo stato attività:");
+					System.out
+							.println(Colors.ANSI_GREEN + "Inserisci l'Id del mezzo per trovare il suo stato attività:");
 					String mezzoId = scanner.nextLine();
 					try {
 						StatoMezzo trovatoStatoMezzoPerId = mezzoDao.getStatoMezzoById(mezzoId);
@@ -219,7 +222,8 @@ public class Application {
 					break;
 				case 5:
 					scanner.nextLine();
-					System.out.println("Inserisci l'Id del mezzo per trovare i biglietti vidimati:");
+					System.out
+							.println(Colors.ANSI_GREEN + "Inserisci l'Id del mezzo per trovare i biglietti vidimati:");
 					String mezzoId2 = scanner.nextLine();
 					try {
 						int trovatiNumeroBigliettiVidimatiPerId = mezzoDao.getBigliettiVidimatiMezzoById(mezzoId2);
@@ -231,11 +235,12 @@ public class Application {
 					break;
 				case 6:
 					scanner.nextLine();
-					System.out.println("Inserisci l'intervallo di tempo entro cui cercare i Biglietti Vidimati");
-					System.out.println("Inserisci la prima data (formato: yyyy-MM-dd):");
+					System.out.println(Colors.ANSI_GREEN
+							+ "Inserisci l'intervallo di tempo entro cui cercare i Biglietti Vidimati");
+					System.out.println(Colors.ANSI_GREEN + "Inserisci la prima data (formato: yyyy-MM-dd):");
 					String input7 = scanner.nextLine();
 					LocalDate data6 = LocalDate.parse(input7, formatter);
-					System.out.println("Inserisci la seconda data (formato: yyyy-MM-dd):");
+					System.out.println(Colors.ANSI_GREEN + "Inserisci la seconda data (formato: yyyy-MM-dd):");
 					String input8 = scanner.nextLine();
 					LocalDate data7 = LocalDate.parse(input8, formatter);
 					log.info(
@@ -250,8 +255,8 @@ public class Application {
 					break;
 				case 7:
 					scanner.nextLine();
-					System.out.println(
-							"Inserisci id del mezzo per vedere quante volte è stata percorsa la tappa a lui associata");
+					System.out.println(Colors.ANSI_GREEN
+							+ "Inserisci id del mezzo per vedere quante volte è stata percorsa la tappa a lui associata");
 					String trattaId = scanner.nextLine();
 
 					log.info(
@@ -267,8 +272,8 @@ public class Application {
 					break;
 				case 8:
 					scanner.nextLine();
-					System.out.println(
-							"Inserisci l'Id della tratta per controllare il tempo effettivo di percorrenza della sua tappa:");
+					System.out.println(Colors.ANSI_GREEN
+							+ "Inserisci l'Id della tratta per controllare il tempo effettivo di percorrenza della sua tappa:");
 					String trattaId2 = scanner.nextLine();
 					log.info("--------------------- Tempo Effettivo Di Percorrenza Tappa ---------------------");
 
@@ -282,13 +287,15 @@ public class Application {
 
 					break;
 				case 0:
-					System.out.println("Arrivederci, grazie di aver utilizzato la nostra applicazione!");
+					System.out.println(
+							Colors.ANSI_GREEN + "Arrivederci, grazie di aver utilizzato la nostra applicazione!");
 					break;
 				default:
-					System.out.println("Opzione non valida. Riprova.");
+					System.out.println(Colors.ANSI_RED + "Opzione non valida. Riprova.");
 				}
 			} catch (InputMismatchException e) {
-				System.out.println("Non sono ammessi valori testuali. Inserisci un numero compreso tra 1 e 8");
+				System.out.println(
+						Colors.ANSI_RED + "Non sono ammessi valori testuali. Inserisci un numero compreso tra 1 e 8");
 				scanner.nextLine();
 			}
 		}
