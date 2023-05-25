@@ -26,8 +26,8 @@ public class Biglietto extends Ticket {
 
 	@Override
 	public String toString() {
-		return "Biglietto [getId()=" + getId() + ", getDataEmissione()=" + getDataEmissione() + ", getDataScadenza()="
-				+ getDataScadenza() + ", getDataTimbratura()=" + getDataTimbratura() + "]";
+		return "Biglietto [Id=" + getId() + ", Data di Emissione=" + getDataEmissione() + ", Data di Scadenza="
+				+ getDataScadenza() + ", Data di Timbratura=" + getDataTimbratura() + "]";
 	}
 
 }
