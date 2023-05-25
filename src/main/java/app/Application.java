@@ -131,6 +131,7 @@ public class Application {
 		System.out.println(Colors.ANSI_GREEN + "12. Cambia lo stato di un mezzo");
 		System.out.println(Colors.ANSI_GREEN + "13. Cerca quale mezzo percorre una tratta");
 		System.out.println(Colors.ANSI_GREEN + "14. Cerca tutti i mezzi in servizio");
+		System.out.println(Colors.ANSI_GREEN + "15. Cerca tutti i mezzi in manutenzione");
 		while (scelta != 0) {
 
 			try {
@@ -393,6 +394,18 @@ public class Application {
 						;
 					} else {
 						log.info("Nessun mezzo in servizio trovato");
+					}
+					break;
+				case 15:
+					scanner.nextLine();
+
+					List<Mezzo> mezziInManutenzione = mezzoDao.getMezziInManutenzione();
+					log.info("--------------------- Mezzi in manutenzione trovati ---------------------");
+					if (mezziInManutenzione.size() > 0) {
+						mezziInManutenzione.stream().forEach(t -> log.info(t.toString()));
+						;
+					} else {
+						log.info("Nessun mezzo in manutenzione trovato");
 					}
 					break;
 				case 0:

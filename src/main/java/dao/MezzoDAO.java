@@ -83,4 +83,10 @@ public class MezzoDAO {
 		query.setParameter("stato", StatoMezzo.IN_SERVIZIO);
 		return query.getResultList();
 	}
+
+	public List<Mezzo> getMezziInManutenzione() {
+		TypedQuery<Mezzo> query = em.createNamedQuery("getMezziInServizio", Mezzo.class);
+		query.setParameter("stato", StatoMezzo.IN_MANUTENZIONE);
+		return query.getResultList();
+	}
 }
