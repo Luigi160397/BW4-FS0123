@@ -20,6 +20,7 @@ import entities.Abbonamento;
 import entities.Biglietto;
 import entities.Bus;
 import entities.Distributore;
+import entities.Mezzo;
 import entities.StatoDistributore;
 import entities.StatoMezzo;
 import entities.Tappa;
@@ -127,6 +128,7 @@ public class Application {
 		System.out.println(Colors.ANSI_GREEN + "9. Registra nuovo utente");
 		System.out.println(Colors.ANSI_GREEN + "10. Emetti nuovo biglietto");
 		System.out.println(Colors.ANSI_GREEN + "11. Emetti nuovo abbonamento");
+		System.out.println(Colors.ANSI_GREEN + "12. Cambia lo stato di un mezzo");
 		while (scelta != 0) {
 
 			try {
@@ -331,6 +333,41 @@ public class Application {
 					TipoAbbonamento tipo1 = TipoAbbonamento.valueOf(input15.toUpperCase());
 					Abbonamento abbonamento = new Abbonamento(tessera6, LocalDate.now(), distributore4, tipo1);
 					ticDao.save(abbonamento);
+					break;
+
+				case 12:
+					scanner.nextLine();
+					System.out.println(
+							Colors.ANSI_GREEN + "Inserisci l'id del mezzo di cui si vuole aggiornare lo stato:");
+					String input16 = scanner.nextLine();
+					System.out.println(Colors.ANSI_GREEN
+							+ "Inserisci lo stato del mezzo che si vuole settare (IN_MANUTENZIONE/IN_SERVIZIO):");
+					String input17 = scanner.nextLine();
+
+					while (!input17.equalsIgnoreCase("IN_MANUTENZIONE") && !input17.equalsIgnoreCase("IN_SERVIZIO")) {
+						System.out.println(Colors.ANSI_RED
+								+ "Stato mezzo Inesistente! Reinserisci lo stato del mezzo tra (IN_MANUTENZIONE/IN_SERVIZIO):");
+						input17 = scanner.nextLine();
+					}
+					StatoMezzo statoMezzo = StatoMezzo.valueOf(input17.toUpperCase());
+
+					Mezzo mezzoTrovato = mezzoDao.getById(UUID.fromString(input16));
+					if (statoMezzo.equals(StatoMezzo.IN_MANUTENZIONE)) {
+
+						mezzoTrovato.setStato(statoMezzo);
+						mezzoTrovato.setDataInizioServizio(null);
+						mezzoTrovato.setDataFineServizio(null);
+						mezzoTrovato.setDataInizioManutenzione(LocalDate.now());
+						mezzoTrovato.setDataFineManutenzione(mezzoTrovato.getDataInizioManutenzione().plusDays(5));
+						mezzoDao.update(mezzoTrovato);
+					} else {
+						mezzoTrovato.setStato(statoMezzo);
+						mezzoTrovato.setDataInizioServizio(LocalDate.now());
+						mezzoTrovato.setDataFineServizio(mezzoTrovato.getDataInizioServizio().plusMonths(6));
+						mezzoTrovato.setDataInizioManutenzione(null);
+						mezzoTrovato.setDataFineManutenzione(null);
+						mezzoDao.update(mezzoTrovato);
+					}
 					break;
 
 				case 0:

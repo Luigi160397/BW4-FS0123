@@ -26,7 +26,7 @@ public class MezzoDAO {
 		log.info("Mezzo salvato!");
 	}
 
-	public Mezzo getByISBN(UUID id) {
+	public Mezzo getById(UUID id) {
 
 		Mezzo found = em.find(Mezzo.class, id);
 		return found;
