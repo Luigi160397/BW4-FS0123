@@ -423,7 +423,7 @@ public class Application {
 					String input13 = scanner.nextLine();
 					Tessera tessera5 = tessDao.getById(UUID.fromString(input13));
 					Distributore distributore3 = distDao
-							.getById(UUID.fromString("1888cbb9-3ac6-4d94-b5e9-74ec0aba4b7e"));
+							.getById(UUID.fromString("3d5cba60-3c26-405c-9fc2-086ce8c2292c"));
 					Biglietto biglietto3 = new Biglietto(tessera5, LocalDate.now(), distributore3);
 					ticDao.save(biglietto3);
 					break;
@@ -433,7 +433,7 @@ public class Application {
 					String input14 = scanner.nextLine();
 					Tessera tessera6 = tessDao.getById(UUID.fromString(input14));
 					Distributore distributore4 = distDao
-							.getById(UUID.fromString("f7bb76b6-ee9a-4a44-ad97-99a0022df94f"));
+							.getById(UUID.fromString("3d5cba60-3c26-405c-9fc2-086ce8c2292c"));
 					System.out.println(Colors.ANSI_GREEN + "Inserisci il tipo di abbonamento (Settimanale/Mensile):");
 					String input15 = scanner.nextLine();
 
