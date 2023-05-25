@@ -51,6 +51,13 @@ public abstract class Ticket {
 		this.mezzoTimbratura = mezzoTimbratura;
 	}
 
+	public Ticket(Tessera tessera, LocalDate dataEmissione, Distributore distributore) {
+		super();
+		this.tessera = tessera;
+		this.DataEmissione = dataEmissione;
+		this.distributore = distributore;
+	}
+
 	@Override
 	public String toString() {
 		return "Ticket [id=" + id + ", DataEmissione=" + DataEmissione + ", DataScadenza=" + DataScadenza

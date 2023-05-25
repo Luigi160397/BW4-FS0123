@@ -25,7 +25,7 @@ public class DistributoreDAO {
 
 	}
 
-	public Distributore getByISBN(UUID id) {
+	public Distributore getById(UUID id) {
 
 		Distributore found = em.find(Distributore.class, id);
 		return found;

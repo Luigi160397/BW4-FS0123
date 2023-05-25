@@ -25,7 +25,7 @@ public class TesseraDAO {
 
 	}
 
-	public Tessera getByISBN(UUID id) {
+	public Tessera getById(UUID id) {
 
 		Tessera found = em.find(Tessera.class, id);
 		return found;

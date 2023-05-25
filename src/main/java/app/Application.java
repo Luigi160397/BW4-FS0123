@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
+import java.util.UUID;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -124,6 +125,7 @@ public class Application {
 		System.out.println(Colors.ANSI_GREEN + "7. Trova il numero di volte che una tappa è stata percorsa");
 		System.out.println(Colors.ANSI_GREEN + "8. Trova il tempo effettivo di percorrenza di una tappa");
 		System.out.println(Colors.ANSI_GREEN + "9. Registra nuovo utente");
+		System.out.println(Colors.ANSI_GREEN + "10. Emetti nuovo biglietto");
 		while (scelta != 0) {
 
 			try {
@@ -299,9 +301,17 @@ public class Application {
 					LocalDate data8 = LocalDate.parse(input12, formatter);
 					Tessera tessera4 = new Tessera(input10, input11, data8, LocalDate.now());
 					tessDao.save(tessera4);
-
 					break;
-
+				case 10:
+					scanner.nextLine();
+					System.out.println(Colors.ANSI_GREEN + "Inserisci il numero di tessera dell'utente:");
+					String input13 = scanner.nextLine();
+					Tessera tessera5 = tessDao.getById(UUID.fromString(input13));
+					Distributore distributore3 = distDao
+							.getById(UUID.fromString("1888cbb9-3ac6-4d94-b5e9-74ec0aba4b7e"));
+					Biglietto biglietto3 = new Biglietto(tessera5, LocalDate.now(), distributore3);
+					ticDao.save(biglietto3);
+					break;
 				case 0:
 					System.out.println(
 							Colors.ANSI_GREEN + "Arrivederci, grazie di aver utilizzato la nostra applicazione!");

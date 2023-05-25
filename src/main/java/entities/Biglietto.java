@@ -20,6 +20,10 @@ public class Biglietto extends Ticket {
 		setDataScadenza(dataTimbratura.plusDays(1));
 	}
 
+	public Biglietto(Tessera tessera, LocalDate dataEmissione, Distributore distributore) {
+		super(tessera, dataEmissione, distributore);
+	}
+
 	@Override
 	public String toString() {
 		return "Biglietto [getId()=" + getId() + ", getDataEmissione()=" + getDataEmissione() + ", getDataScadenza()="
