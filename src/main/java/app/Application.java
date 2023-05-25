@@ -79,28 +79,28 @@ public class Application {
 
 //		tessDao.save(tessera1);
 //		tessDao.save(tessera2);
-		tessDao.save(tessera3);
+//		tessDao.save(tessera3);
 //		distDao.save(distributore1);
 //		distDao.save(distributore1);
-		distDao.save(distributore2);
+//		distDao.save(distributore2);
 //		tappaDao.save(tappa1);
 //		tappaDao.save(tappa2);
-		tappaDao.save(tappa3);
+//		tappaDao.save(tappa3);
 //		trattaDao.save(tratta1);
 //		trattaDao.save(tratta2);
-		trattaDao.save(tratta3);
+//		trattaDao.save(tratta3);
 //		mezzoDao.save(bus1);
 //		mezzoDao.save(bus2);
-		mezzoDao.save(tram1);
+//		mezzoDao.save(tram1);
 //		ticDao.save(biglietto1);
 //		ticDao.save(abbonamento1);
-		ticDao.save(biglietto2);
+//		ticDao.save(biglietto2);
 //		tratta1.setMezzo(bus1);
 //		tratta2.setMezzo(bus2);
-		tratta3.setMezzo(tram1);
+//		tratta3.setMezzo(tram1);
 //		trattaDao.update(tratta1);
 //		trattaDao.update(tratta2);
-		trattaDao.update(tratta3);
+//		trattaDao.update(tratta3);
 
 		Scanner scanner = new Scanner(System.in);
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
